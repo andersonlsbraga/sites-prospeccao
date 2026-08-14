@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Análises | Análises de Verdade, Resultados Reais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --teal-900:#062E2B;
+    --teal-800:#0B4A44;
+    --teal-700:#0F6860;
+    --teal-600:#158A7E;
+    --teal-500:#1AA99A;
+    --teal-400:#3FCBB8;
+    --teal-100:#E1F7F1;
+    --teal-50:#F1FCFA;
+    --ink:#0B211F;
+    --gray-600:#526864;
+    --gray-400:#89A29D;
+    --white:#FFFFFF;
+    --star:#FFB020;
+    --shadow: 0 10px 30px rgba(6,46,43,0.08);
+    --radius: 16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.55;}
+  h1,h2,h3,.display{font-family:'Poppins',sans-serif;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--teal-500);color:#fff;box-shadow:0 8px 20px rgba(26,169,154,.35);}
+  .btn-primary:hover{background:var(--teal-600);}
+  .btn-outline{background:#fff;color:var(--teal-700);border-color:var(--teal-100);}
+  .btn-outline:hover{border-color:var(--teal-400);}
+  .btn-ghost-light{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.35);}
+
+  /* Utility bar */
+  .utility-bar{background:linear-gradient(90deg,var(--teal-900),var(--teal-800));color:#CDF0E9;font-size:12.5px;}
+  .utility-bar .container{display:flex;align-items:center;justify-content:space-between;padding:9px 24px;flex-wrap:wrap;gap:8px;}
+  .utility-links{display:flex;align-items:center;gap:22px;}
+  .utility-links a{opacity:.9;transition:opacity .15s;}
+  .utility-links a:hover{opacity:1;}
+  @media(max-width:760px){.utility-links span:not(:first-child){display:none;}}
+
+  /* Header / main nav */
+  header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,var(--teal-700),var(--teal-500));transition:box-shadow .3s ease;}
+  header.scrolled{box-shadow:0 10px 26px rgba(6,46,43,.2);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:700;font-size:21px;color:#fff;}
+  .logo .dot{width:12px;height:12px;background:#fff;border-radius:4px;display:inline-block;opacity:.9;}
+  .logo span.light{font-weight:500;color:rgba(255,255,255,.75);}
+  .nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:500;color:#fff;}
+  .nav-links a{opacity:.85;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .nav-search{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;transition:background .2s;flex:none;}
+  .nav-search:hover{background:rgba(255,255,255,.28);}
+  .btn-on-teal{background:#fff;color:var(--teal-700);}
+  .btn-on-teal:hover{background:var(--teal-50);}
+  @media(max-width:860px){.nav-links{display:none;}}
+
+  /* Hero (split panel, evoluído) */
+  .hero-split{display:grid;grid-template-columns:400px 1fr;min-height:500px;padding:0;}
+  @media(max-width:860px){.hero-split{grid-template-columns:1fr;}}
+  .hero-left{background:linear-gradient(165deg,var(--teal-900),var(--teal-800));display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:52px 44px;color:#fff;gap:20px;}
+  .hero-left .brandmark{display:flex;align-items:center;gap:10px;font-family:'Poppins',sans-serif;font-weight:700;font-size:23px;}
+  .hero-left .brandmark .dot{width:14px;height:14px;background:var(--teal-400);border-radius:5px;display:inline-block;}
+  .hero-left .mini-stats{display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:#BFEDE4;}
+  .hero-left .mini-stats b{color:#fff;font-family:'Poppins',sans-serif;}
+  .counter-stat{display:flex;align-items:baseline;gap:8px;margin-top:2px;}
+  .counter-stat .num{font-family:'Poppins',sans-serif;font-weight:800;font-size:30px;color:#fff;line-height:1;}
+  .counter-stat .num::after{content:'+';}
+  .counter-stat small{color:#8fd8ca;font-size:12px;}
+  .trust-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
+  .trust-pills span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#DFF7F1;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:999px;}
+  .hero-left .btn{background:var(--teal-400);color:var(--teal-900);font-weight:700;}
+  .hero-left .btn:hover{background:#63DCC8;}
+  .hero-right{position:relative;overflow:hidden;min-height:360px;}
+  .hero-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hero-right::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg, rgba(6,46,43,.88) 15%, rgba(6,46,43,.45) 50%, rgba(6,46,43,.12) 100%);}
+  .hero-copy{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:40px 52px;color:#fff;}
+  .hero-copy .badge{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);font-weight:600;font-size:12.5px;padding:7px 14px;border-radius:999px;margin-bottom:18px;}
+  .hero-copy .badge .blip{width:7px;height:7px;background:var(--teal-400);border-radius:50%;}
+  .hero-copy .tag{font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(26px,3.8vw,40px);line-height:1.15;letter-spacing:.5px;text-transform:uppercase;}
+  .hero-copy .script{font-family:'Pacifico',cursive;font-weight:400;font-size:clamp(40px,6vw,68px);color:var(--teal-400);line-height:1;margin-top:6px;}
+  .hero-copy p.lead{margin-top:18px;font-size:15.5px;color:#DCF7F1;max-width:420px;}
+  @media(max-width:860px){.hero-copy{padding:36px 28px;}}
+
+  /* Floating glass trust card sobre a foto do hero — evolução do modelo base */
+  .hero-floatcard{position:absolute;top:26px;right:26px;z-index:3;background:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.35);border-radius:16px;padding:13px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 14px 34px rgba(6,46,43,.3);}
+  .hero-floatcard .fic{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--teal-500),var(--teal-400));display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex:none;}
+  .hero-floatcard b{display:block;font-family:'Poppins',sans-serif;font-size:13.5px;color:#fff;white-space:nowrap;}
+  .hero-floatcard small{color:#DFF7F1;font-size:11px;}
+  @media(max-width:600px){.hero-floatcard{display:none;}}
+
+  /* Floating schedule card */
+  .schedule-wrap{position:relative;z-index:6;padding:0 24px;}
+  .schedule-card{max-width:1040px;margin:-52px auto 0;background:#fff;border-radius:22px;box-shadow:0 26px 60px rgba(6,46,43,.2);display:grid;grid-template-columns:210px 1fr;overflow:hidden;}
+  @media(max-width:760px){.schedule-card{grid-template-columns:1fr;margin:-40px auto 0;}}
+  .schedule-loc{background:linear-gradient(160deg,#FFCF5C,#FFB020);padding:26px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;color:#4A3300;transition:filter .2s;}
+  .schedule-loc:hover{filter:brightness(1.04);}
+  .schedule-loc .pin{font-size:26px;}
+  .schedule-loc b{font-family:'Poppins',sans-serif;font-size:14px;}
+  .schedule-loc span{font-size:11.5px;opacity:.85;}
+  .schedule-body{padding:26px 32px;}
+  .schedule-body h3{font-family:'Poppins',sans-serif;font-size:17.5px;color:var(--teal-900);margin-bottom:16px;}
+  .schedule-fields{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end;}
+  @media(max-width:760px){.schedule-fields{grid-template-columns:1fr;}}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:6px;}
+  .field select{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #DFF0EC;font-size:13.5px;color:var(--ink);background:#fff;font-family:'Inter',sans-serif;}
+  .field select:focus{outline:none;border-color:var(--teal-500);}
+  #scheduleBtn{white-space:nowrap;}
+
+  /* Quick actions — connected step flow */
+  .quick{margin-top:64px;position:relative;z-index:5;background:radial-gradient(65% 100% at 50% 0%, var(--teal-50), transparent 75%);padding-top:8px;padding-bottom:8px;}
+  .quick-eyebrow{text-align:center;color:var(--teal-600);font-weight:700;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;}
+  .quick-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media(max-width:860px){.quick-grid{grid-template-columns:repeat(2,1fr);}}
+  .quick-connector{position:absolute;left:8%;right:8%;top:46px;height:0;border-top:2px dashed var(--teal-400);opacity:.45;z-index:0;}
+  .quick-connector .node{position:absolute;top:0;width:9px;height:9px;border-radius:50%;background:var(--teal-400);transform:translate(-50%,-50%);box-shadow:0 0 0 5px var(--teal-50);}
+  @media(max-width:860px){.quick-connector{display:none;}}
+  .quick-card{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--teal-900),var(--teal-800));border-radius:18px;padding:24px;color:#fff;box-shadow:0 14px 30px rgba(6,46,43,.18);transition:transform .3s ease, box-shadow .3s ease;z-index:1;}
+  .quick-card::after{content:"";position:absolute;top:-45%;right:-25%;width:150px;height:150px;background:radial-gradient(circle, rgba(63,203,184,.4), transparent 70%);pointer-events:none;}
+  .quick-card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(6,46,43,.3);}
+  .quick-card .step{position:absolute;top:16px;right:18px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.32);letter-spacing:1px;z-index:1;}
+  .quick-card .ic{position:relative;z-index:1;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--teal-500),var(--teal-400));display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:19px;box-shadow:0 8px 18px rgba(26,169,154,.45);}
+  .quick-card h4{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-size:15.5px;margin-bottom:4px;}
+  .quick-card p{position:relative;z-index:1;font-size:12.5px;color:#B7DED7;}
+
+  section{padding:88px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px;}
+  .eyebrow{color:var(--teal-600);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:block;}
+  .section-head h2{font-size:34px;color:var(--teal-900);font-weight:700;}
+  .section-head p{color:var(--gray-600);margin-top:12px;font-size:16px;}
+
+  /* Benefits */
+  .benefits{background:var(--teal-50);}
+  .benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  @media(max-width:760px){.benefits-grid{grid-template-columns:1fr;}}
+  .benefit{display:flex;gap:16px;background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 26px rgba(6,46,43,.06);transition:transform .3s ease, box-shadow .3s ease;}
+  .benefit:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(6,46,43,.14);}
+  .benefit .ic{position:relative;z-index:1;flex:none;width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--teal-500),var(--teal-400));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;box-shadow:0 8px 18px rgba(26,169,154,.35);}
+  .benefit h4{font-family:'Poppins',sans-serif;font-size:16px;margin-bottom:6px;color:var(--teal-900);}
+  .benefit p{font-size:13.5px;color:var(--gray-600);}
+
+  /* Rating / social proof */
+  .proof{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--teal-900),var(--teal-800));color:#fff;border-radius:28px;margin:0 24px;padding:56px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+  .proof::after{content:"";position:absolute;top:-35%;right:-8%;width:320px;height:320px;background:radial-gradient(circle, rgba(63,203,184,.3), transparent 70%);pointer-events:none;}
+  .proof-left, .proof-score{position:relative;z-index:1;}
+  .proof-left h3{font-family:'Poppins',sans-serif;font-size:26px;margin-bottom:10px;}
+  .proof-left p{color:#BFEDE4;max-width:420px;}
+  .proof-score{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.1);padding:22px 30px;border-radius:18px;}
+  .proof-score .num{font-family:'Poppins',sans-serif;font-size:44px;font-weight:800;}
+  .proof-score .stars{color:var(--star);font-size:18px;letter-spacing:2px;}
+  .proof-score small{color:#BFEDE4;font-size:12.5px;}
+
+  /* Payment / convenios */
+  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:860px){.pay-grid{grid-template-columns:1fr;}}
+  .pay-card{border-radius:18px;padding:30px;background:#fff;border:1px solid #DFF0EC;text-align:center;transition:transform .3s ease, box-shadow .3s ease;}
+  .pay-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(6,46,43,.12);}
+  .pay-card .ic{position:relative;z-index:1;width:50px;height:50px;margin:0 auto 16px;border-radius:14px;background:linear-gradient(135deg,var(--teal-500),var(--teal-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 18px rgba(26,169,154,.35);}
+  .pay-card h4{font-family:'Poppins',sans-serif;margin-bottom:8px;}
+  .pay-card p{font-size:13.5px;color:var(--gray-600);}
+
+  /* About */
+  .about{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;}
+  @media(max-width:900px){.about{grid-template-columns:1fr;}}
+  .about-media{position:relative;}
+  .about-media img{border-radius:22px;box-shadow:var(--shadow);height:440px;width:100%;object-fit:cover;}
+  .about-badge{position:absolute;bottom:20px;left:20px;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:0 14px 30px rgba(6,46,43,.2);display:flex;align-items:center;gap:12px;}
+  .about-badge .stars{color:var(--star);font-size:15px;letter-spacing:1px;}
+  .about-badge b{font-family:'Poppins',sans-serif;font-size:17px;color:var(--teal-900);display:block;}
+  .about-badge small{color:var(--gray-600);font-size:11.5px;}
+  .about-list{margin-top:22px;display:flex;flex-direction:column;gap:14px;}
+  .about-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--gray-600);}
+  .about-list b{color:var(--ink);}
+  .check{flex:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--teal-500),var(--teal-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:2px;box-shadow:0 6px 14px rgba(26,169,154,.35);}
+
+  /* Contact */
+  .contact{background:var(--teal-50);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;}
+  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:#fff;border-radius:20px;padding:36px;box-shadow:var(--shadow);}
+  .contact-item{display:flex;gap:14px;margin-bottom:22px;}
+  .contact-item .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--teal-100);color:var(--teal-700);display:flex;align-items:center;justify-content:center;}
+  .contact-item h5{font-size:14px;color:var(--gray-600);margin-bottom:2px;}
+  .contact-item p{font-weight:600;font-size:15px;}
+  .map-wrap{border-radius:20px;overflow:hidden;box-shadow:var(--shadow);min-height:340px;}
+  .map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;}
+
+  /* CTA banner */
+  .cta-banner{background:linear-gradient(120deg,var(--teal-600),var(--teal-800));color:#fff;text-align:center;border-radius:28px;margin:0 24px;padding:64px 24px;}
+  .cta-banner h2{font-family:'Poppins',sans-serif;font-size:32px;margin-bottom:14px;}
+  .cta-banner p{color:#DCF7F1;max-width:520px;margin:0 auto 28px;}
+
+  footer{background:var(--teal-900);color:#BFEDE4;padding:56px 0 24px;margin-top:88px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+  @media(max-width:760px){.footer-grid{grid-template-columns:1fr;}}
+  footer h5{color:#fff;font-family:'Poppins',sans-serif;font-size:15px;margin-bottom:16px;}
+  footer li{margin-bottom:10px;font-size:14px;}
+  footer .foot-logo{display:flex;align-items:center;gap:8px;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:19px;margin-bottom:12px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#8FC9BE;}
+
+  .whatsapp-float{position:fixed;bottom:24px;right:24px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:60;font-size:28px;transition:transform .4s ease;}
+  .whatsapp-float:hover{transform:scale(1.1) rotate(6deg);}
+  .whatsapp-float .ping{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#FF4D4D;border-radius:50%;border:2px solid #fff;animation:pulseDot 2s ease-in-out infinite;}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.55;transform:scale(1.2);}}
+
+  /* Scroll reveal (progressive enhancement: visible by default, only hides once .js is present) */
+  .reveal, .reveal-stagger > *{opacity:1;transform:none;}
+  .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);}
+  .js .reveal.is-visible{opacity:1;transform:translateY(0);}
+  .js .reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);}
+  .js .reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+  .js .reveal-stagger.is-visible > *:nth-child(1){transition-delay:.04s;}
+  .js .reveal-stagger.is-visible > *:nth-child(2){transition-delay:.09s;}
+  .js .reveal-stagger.is-visible > *:nth-child(3){transition-delay:.14s;}
+  .js .reveal-stagger.is-visible > *:nth-child(4){transition-delay:.19s;}
+  .js .reveal-stagger.is-visible > *:nth-child(5){transition-delay:.24s;}
+  .js .reveal-stagger.is-visible > *:nth-child(6){transition-delay:.29s;}
+  .js .reveal-stagger.is-visible > *:nth-child(7){transition-delay:.34s;}
+  .js .reveal-stagger.is-visible > *:nth-child(8){transition-delay:.39s;}
+  .js .reveal-stagger.is-visible > *:nth-child(9){transition-delay:.44s;}
+  .js .reveal-stagger.is-visible > *:nth-child(10){transition-delay:.49s;}
+  .js .reveal-stagger.is-visible > *:nth-child(11){transition-delay:.54s;}
+  .js .reveal-stagger.is-visible > *:nth-child(12){transition-delay:.59s;}
+
+  /* Border-run: rotating gradient border on hover */
+  @property --angle{syntax:'<angle>';inherits:false;initial-value:0deg;}
+  .border-run{position:relative;isolation:isolate;}
+  .border-run::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;
+    background:conic-gradient(from var(--angle), transparent 0deg, var(--teal-500) 60deg, var(--teal-400) 140deg, transparent 200deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation:borderRun 6s linear infinite;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2;}
+  .border-run:hover::before{opacity:1;animation-duration:2.2s;}
+  @keyframes borderRun{100%{--angle:360deg;}}
+
+  /* Gallery scroller: two rows of image cards, opposite directions, pause on hover */
+  .gallery-rows{display:flex;flex-direction:column;gap:22px;padding:12px 0 8px;}
+  .gallery-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
+  .gallery-track{display:flex;width:max-content;gap:22px;animation:galleryLeft 55s linear infinite;}
+  .gallery-track.reverse{animation-name:galleryRight;}
+  .gallery-wrap:hover .gallery-track{animation-play-state:paused;}
+  @keyframes galleryLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes galleryRight{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  .gallery-card{position:relative;width:280px;height:320px;flex-shrink:0;border-radius:22px;overflow:hidden;display:block;box-shadow:0 8px 20px rgba(6,46,43,.10);transition:transform .5s ease, box-shadow .5s ease;}
+  .gallery-card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(6,46,43,.22);}
+  .gallery-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+  .gallery-card:hover img{transform:scale(1.1);}
+  .gallery-card .overlay{position:absolute;inset:0;background:linear-gradient(0deg, var(--teal-900) 0%, rgba(6,46,43,.6) 42%, rgba(6,46,43,.05) 75%);}
+  .gallery-card .content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#fff;}
+  .gallery-card .gic{width:42px;height:42px;border-radius:12px;background:var(--teal-500);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:12px;}
+  .gallery-card h4{font-family:'Poppins',sans-serif;font-size:16.5px;margin-bottom:4px;}
+  .gallery-card p{font-size:12.5px;color:#DCF7F1;}
+  @media(max-width:600px){.gallery-card{width:230px;height:280px;}}
+
+  @media (prefers-reduced-motion: reduce){
+    .gallery-track{animation:none;}
+    .border-run::before{animation:none;}
+    .js .reveal, .js .reveal-stagger > *{transition:none;opacity:1;transform:none;}
+    .whatsapp-float .ping{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-links">
+      <span>Av. Getúlio Vargas, 1782 - Bosque · Rio Branco - AC</span>
+      <span>+55 68 99924-6203</span>
+    </div>
+    <div class="utility-links">
+      <a href="https://www.google.com/maps/search/?api=1&query=Laborat%C3%B3rio+Real+An%C3%A1lises+Rio+Branco+Acre" target="_blank">★ 4.6 · Ver avaliações no Google</a>
+    </div>
+  </div>
+</div>
+
+<header id="siteHeader">
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>Real <span class="light">Análises</span></div>
+    <nav class="nav-links">
+      <a href="#exames">Exames</a>
+      <a href="#porque">Diferenciais</a>
+      <a href="#convenios">Convênios</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-search" href="#agendar" title="Agendar coleta">🔍</a>
+      <a class="btn btn-on-teal" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20coleta%20de%20exames." target="_blank">Agendar Coleta</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero-split">
+  <div class="hero-left">
+    <div class="brandmark"><span class="dot"></span>Real Análises</div>
+    <div class="mini-stats">
+      <div><b>★ 4.6</b> no Google · avaliação real dos pacientes</div>
+      <div class="counter-stat"><span class="num" id="statNum" data-target="15000">0</span><small>exames realizados</small></div>
+      <div class="trust-pills">
+        <span>✓ Resultado Digital</span>
+        <span>✓ Coleta Domiciliar</span>
+        <span>✓ Convênios</span>
+      </div>
+    </div>
+    <a class="btn" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20coleta%20de%20exames." target="_blank">Agende sua Coleta</a>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1631217871099-88310a909a32?q=80&w=1600&auto=format&fit=crop" alt="Consulta médica com atendimento de confiança">
+    <div class="hero-floatcard">
+      <div class="fic">⏱</div>
+      <div><b>Resultado em até 24h</b><small>na maioria dos exames</small></div>
+    </div>
+    <div class="hero-copy">
+      <span class="badge"><span class="blip"></span> Av. Getúlio Vargas, 1782 - Bosque</span>
+      <div class="tag">Análises de verdade, resultados</div>
+      <div class="script">Reais</div>
+      <p class="lead">Exames laboratoriais com credibilidade e agilidade — resultados que você e seu médico podem confiar, sem letras miúdas.</p>
+    </div>
+  </div>
+</section>
+
+<div class="schedule-wrap">
+  <div class="schedule-card reveal" id="agendar">
+    <a class="schedule-loc" href="https://www.google.com/maps?q=Av.+Get%C3%BAlio+Vargas,+1782,+Rio+Branco+-+AC" target="_blank">
+      <div class="pin">📍</div>
+      <b>Como chegar</b>
+      <span>Av. Getúlio Vargas, 1782 — Bosque, Rio Branco, AC</span>
+    </a>
+    <div class="schedule-body">
+      <h3>Agende sua coleta de exames com rapidez!</h3>
+      <div class="schedule-fields">
+        <div class="field">
+          <label for="fieldExam">Tipo de exame</label>
+          <select id="fieldExam">
+            <option value="">Qualquer exame</option>
+            <option>Hemograma e Bioquímica</option>
+            <option>Perfil Hormonal</option>
+            <option>Teste Rápido de Dengue</option>
+            <option>Teste Rápido de Covid-19</option>
+            <option>Kit de Antígeno</option>
+            <option>Sorologias</option>
+            <option>Check-up Preventivo</option>
+            <option>Coleta Domiciliar</option>
+            <option>Exames Admissionais</option>
+            <option>Laudos e Atestados</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fieldPeriod">Prefere ser atendido</label>
+          <select id="fieldPeriod">
+            <option value="">Qualquer horário</option>
+            <option>Manhã (em jejum)</option>
+            <option>Tarde</option>
+          </select>
+        </div>
+        <button type="button" id="scheduleBtn" class="btn btn-primary">Agendar Coleta →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container quick">
+  <div class="quick-eyebrow reveal">Seu caminho até o resultado</div>
+  <div class="quick-grid reveal-stagger">
+    <div class="quick-connector">
+      <span class="node" style="left:12.5%"></span>
+      <span class="node" style="left:37.5%"></span>
+      <span class="node" style="left:62.5%"></span>
+      <span class="node" style="left:87.5%"></span>
+    </div>
+    <a class="quick-card border-run" href="https://wa.me/5568999246203" target="_blank">
+      <span class="step">01</span>
+      <div class="ic">📅</div>
+      <h4>Agendar Coleta</h4>
+      <p>Resposta rápida pelo WhatsApp</p>
+    </a>
+    <a class="quick-card border-run" href="#exames">
+      <span class="step">02</span>
+      <div class="ic">🧪</div>
+      <h4>Nossos Exames</h4>
+      <p>Da bioquímica aos testes rápidos</p>
+    </a>
+    <a class="quick-card border-run" href="#convenios">
+      <span class="step">03</span>
+      <div class="ic">💳</div>
+      <h4>Convênios e Pagamento</h4>
+      <p>Particular, Pix e convênios</p>
+    </a>
+    <a class="quick-card border-run" href="#contato">
+      <span class="step">04</span>
+      <div class="ic">📍</div>
+      <h4>Nossa Unidade</h4>
+      <p>Av. Getúlio Vargas, 1782 - Bosque</p>
+    </a>
+  </div>
+</div>
+
+<section id="exames" style="padding-bottom:56px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Exames</span>
+      <h2>Análises de verdade, para resultados que você confia</h2>
+      <p>Equipe qualificada e processos rigorosos para entregar exames precisos, no prazo que você precisa.</p>
+    </div>
+  </div>
+  <div class="gallery-rows">
+    <div class="gallery-wrap">
+      <div class="gallery-track">
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Hemograma%20e%20Bioqu%C3%ADmica."><img src="https://images.unsplash.com/photo-1606318313647-137d1f3b4d3c?q=75&w=700&auto=format&fit=crop" alt="Hemograma e Bioquímica"><div class="overlay"></div><div class="content"><div class="gic">🩸</div><h4>Hemograma e Bioquímica</h4><p>Avaliação completa da sua saúde</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Perfil%20Hormonal."><img src="https://images.unsplash.com/photo-1659989693409-5adc97274bed?q=75&w=700&auto=format&fit=crop" alt="Perfil Hormonal"><div class="overlay"></div><div class="content"><div class="gic">🧬</div><h4>Perfil Hormonal</h4><p>Tireoide, hormônios e mais</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Teste%20R%C3%A1pido%20de%20Dengue."><img src="https://images.unsplash.com/photo-1603923464281-414c037cbf5a?q=75&w=700&auto=format&fit=crop" alt="Teste Rápido de Dengue"><div class="overlay"></div><div class="content"><div class="gic">🦟</div><h4>Teste Rápido de Dengue</h4><p>Resultado ágil, sem espera longa</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Teste%20R%C3%A1pido%20de%20Covid-19."><img src="https://images.unsplash.com/photo-1618229745296-8a86a193cc03?q=75&w=700&auto=format&fit=crop" alt="Teste Rápido de Covid-19"><div class="overlay"></div><div class="content"><div class="gic">🧫</div><h4>Teste Rápido Covid-19</h4><p>Diagnóstico rápido e confiável</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Kit%20de%20Ant%C3%ADgeno."><img src="https://images.unsplash.com/photo-1633518009802-724bf2605637?q=75&w=700&auto=format&fit=crop" alt="Kit de Antígeno"><div class="overlay"></div><div class="content"><div class="gic">🧪</div><h4>Kit de Antígeno</h4><p>Testes rápidos com qualidade certificada</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Sorologias."><img src="https://images.unsplash.com/photo-1643841170729-3c9a39503369?q=75&w=700&auto=format&fit=crop" alt="Sorologias"><div class="overlay"></div><div class="content"><div class="gic">🦠</div><h4>Sorologias</h4><p>Painel completo de sorologias</p></div></a>
+        <!-- duplicado p/ loop contínuo -->
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Hemograma%20e%20Bioqu%C3%ADmica."><img src="https://images.unsplash.com/photo-1606318313647-137d1f3b4d3c?q=75&w=700&auto=format&fit=crop" alt="Hemograma e Bioquímica"><div class="overlay"></div><div class="content"><div class="gic">🩸</div><h4>Hemograma e Bioquímica</h4><p>Avaliação completa da sua saúde</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Perfil%20Hormonal."><img src="https://images.unsplash.com/photo-1659989693409-5adc97274bed?q=75&w=700&auto=format&fit=crop" alt="Perfil Hormonal"><div class="overlay"></div><div class="content"><div class="gic">🧬</div><h4>Perfil Hormonal</h4><p>Tireoide, hormônios e mais</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Teste%20R%C3%A1pido%20de%20Dengue."><img src="https://images.unsplash.com/photo-1603923464281-414c037cbf5a?q=75&w=700&auto=format&fit=crop" alt="Teste Rápido de Dengue"><div class="overlay"></div><div class="content"><div class="gic">🦟</div><h4>Teste Rápido de Dengue</h4><p>Resultado ágil, sem espera longa</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Teste%20R%C3%A1pido%20de%20Covid-19."><img src="https://images.unsplash.com/photo-1618229745296-8a86a193cc03?q=75&w=700&auto=format&fit=crop" alt="Teste Rápido de Covid-19"><div class="overlay"></div><div class="content"><div class="gic">🧫</div><h4>Teste Rápido Covid-19</h4><p>Diagnóstico rápido e confiável</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Kit%20de%20Ant%C3%ADgeno."><img src="https://images.unsplash.com/photo-1633518009802-724bf2605637?q=75&w=700&auto=format&fit=crop" alt="Kit de Antígeno"><div class="overlay"></div><div class="content"><div class="gic">🧪</div><h4>Kit de Antígeno</h4><p>Testes rápidos com qualidade certificada</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Sorologias."><img src="https://images.unsplash.com/photo-1643841170729-3c9a39503369?q=75&w=700&auto=format&fit=crop" alt="Sorologias"><div class="overlay"></div><div class="content"><div class="gic">🦠</div><h4>Sorologias</h4><p>Painel completo de sorologias</p></div></a>
+      </div>
+    </div>
+    <div class="gallery-wrap">
+      <div class="gallery-track reverse">
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Check-up%20Preventivo."><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=75&w=700&auto=format&fit=crop" alt="Check-up Preventivo"><div class="overlay"></div><div class="content"><div class="gic">✅</div><h4>Check-up Preventivo</h4><p>Bateria completa de exames num só lugar</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Coleta%20Domiciliar."><img src="https://images.unsplash.com/photo-1629909614456-6b1c5c94cecc?q=75&w=700&auto=format&fit=crop" alt="Coleta Domiciliar"><div class="overlay"></div><div class="content"><div class="gic">🏠</div><h4>Coleta Domiciliar</h4><p>Não pode vir? Nós vamos até você</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Exames%20Admissionais."><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=75&w=700&auto=format&fit=crop" alt="Exames Admissionais"><div class="overlay"></div><div class="content"><div class="gic">💼</div><h4>Exames Admissionais</h4><p>Para empresas e processos seletivos</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Laudos%20e%20Atestados."><img src="https://images.unsplash.com/photo-1758691462814-485c3672e447?q=75&w=700&auto=format&fit=crop" alt="Laudos e Atestados"><div class="overlay"></div><div class="content"><div class="gic">📋</div><h4>Laudos e Atestados</h4><p>Emissão rápida e correta</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Resultado%20Digital."><img src="https://images.unsplash.com/photo-1758691461990-03b49d969495?q=75&w=700&auto=format&fit=crop" alt="Resultado Digital"><div class="overlay"></div><div class="content"><div class="gic">📄</div><h4>Resultado Digital</h4><p>Receba seu laudo online, sem complicação</p></div></a>
+        <!-- duplicado p/ loop contínuo -->
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Check-up%20Preventivo."><img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?q=75&w=700&auto=format&fit=crop" alt="Check-up Preventivo"><div class="overlay"></div><div class="content"><div class="gic">✅</div><h4>Check-up Preventivo</h4><p>Bateria completa de exames num só lugar</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Coleta%20Domiciliar."><img src="https://images.unsplash.com/photo-1629909614456-6b1c5c94cecc?q=75&w=700&auto=format&fit=crop" alt="Coleta Domiciliar"><div class="overlay"></div><div class="content"><div class="gic">🏠</div><h4>Coleta Domiciliar</h4><p>Não pode vir? Nós vamos até você</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Exames%20Admissionais."><img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=75&w=700&auto=format&fit=crop" alt="Exames Admissionais"><div class="overlay"></div><div class="content"><div class="gic">💼</div><h4>Exames Admissionais</h4><p>Para empresas e processos seletivos</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Laudos%20e%20Atestados."><img src="https://images.unsplash.com/photo-1758691462814-485c3672e447?q=75&w=700&auto=format&fit=crop" alt="Laudos e Atestados"><div class="overlay"></div><div class="content"><div class="gic">📋</div><h4>Laudos e Atestados</h4><p>Emissão rápida e correta</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Resultado%20Digital."><img src="https://images.unsplash.com/photo-1758691461990-03b49d969495?q=75&w=700&auto=format&fit=crop" alt="Resultado Digital"><div class="overlay"></div><div class="content"><div class="gic">📄</div><h4>Resultado Digital</h4><p>Receba seu laudo online, sem complicação</p></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits" id="porque">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Diferenciais</span>
+      <h2>O que torna o Real Análises diferente</h2>
+      <p>Credibilidade em cada etapa, da coleta à entrega do resultado.</p>
+    </div>
+    <div class="benefits-grid reveal-stagger">
+      <div class="benefit border-run"><div class="ic">①</div><div><h4>Resultados confiáveis</h4><p>Processos rigorosos de qualidade em cada exame realizado.</p></div></div>
+      <div class="benefit border-run"><div class="ic">②</div><div><h4>Agilidade real</h4><p>Resultado em até 24h na maioria dos exames.</p></div></div>
+      <div class="benefit border-run"><div class="ic">③</div><div><h4>Coleta domiciliar</h4><p>Comodidade pra quem não pode se deslocar até a unidade.</p></div></div>
+      <div class="benefit border-run"><div class="ic">④</div><div><h4>Resultado digital</h4><p>Laudo disponível online, sem precisar voltar até o laboratório.</p></div></div>
+      <div class="benefit border-run"><div class="ic">⑤</div><div><h4>Atendimento próximo</h4><p>Você é atendido pelo nome, com atenção de verdade.</p></div></div>
+      <div class="benefit border-run"><div class="ic">⑥</div><div><h4>Sigilo garantido</h4><p>Seus dados e resultados sempre protegidos.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="proof reveal">
+    <div class="proof-left">
+      <h3>Avaliação real, direto do Google</h3>
+      <p>A nota que os próprios pacientes deram para o atendimento do Real Análises.</p>
+    </div>
+    <div class="proof-score">
+      <div>
+        <div class="num">4.6</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div>
+        <b style="font-family:'Poppins',sans-serif;font-size:18px;">Avaliação dos pacientes</b>
+        <small>Google Maps · Real Análises</small><br>
+        <a href="https://www.google.com/maps/search/?api=1&query=Laborat%C3%B3rio+Real+An%C3%A1lises+Rio+Branco+Acre" target="_blank" style="color:#fff;text-decoration:underline;font-size:13px;">Ver avaliações no Google →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="convenios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Convênios e Pagamento</span>
+      <h2>Cuidar da sua saúde sem pesar no bolso</h2>
+      <p>Facilidade de pagamento e agilidade pra você fazer seu exame sem enrolação.</p>
+    </div>
+    <div class="pay-grid reveal-stagger">
+      <div class="pay-card border-run"><div class="ic">💳</div><h4>Pagamento facilitado</h4><p>Pix, cartão e dinheiro, sem burocracia.</p></div>
+      <div class="pay-card border-run"><div class="ic">🤝</div><h4>Convênios aceitos</h4><p>Consulte a lista de convênios atendidos na unidade.</p></div>
+      <div class="pay-card border-run"><div class="ic">📄</div><h4>Resultado digital</h4><p>Receba seu laudo online, sem complicação.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container about reveal-stagger">
+    <div class="about-media">
+      <img src="https://images.unsplash.com/photo-1765896387387-0538bc9f997e?q=80&w=1000&auto=format&fit=crop" alt="Atendimento humanizado no Real Análises">
+      <div class="about-badge">
+        <div class="stars">★★★★★</div>
+        <div>
+          <b>4.6 no Google</b>
+          <small>avaliação real · Rio Branco</small>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Sobre o laboratório</span>
+      <h2 style="font-size:30px;color:var(--teal-900);font-weight:700;">Análises de verdade, resultados em que você pode confiar</h2>
+      <p style="color:var(--gray-600);margin-top:14px;">O Real Análises atua na Av. Getúlio Vargas, no Bosque, com o compromisso de entregar exames precisos e no prazo. Nome e prática andam juntos: cada resultado passa por um processo rigoroso de qualidade, para que você e seu médico tenham segurança no diagnóstico.</p>
+      <ul class="about-list">
+        <li><span class="check">✓</span><span><b>Processos rigorosos</b> de qualidade em cada etapa do exame.</span></li>
+        <li><span class="check">✓</span><span><b>Resultado em até 24h</b> na maioria dos exames realizados.</span></li>
+        <li><span class="check">✓</span><span><b>Atendimento próximo</b>, do agendamento à entrega do laudo.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contato</span>
+      <h2>Estamos prontos para cuidar da sua saúde</h2>
+    </div>
+    <div class="contact-grid reveal-stagger">
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="ic">📍</div>
+          <div><h5>Endereço</h5><p>Av. Getúlio Vargas, 1782 — Bosque, Rio Branco, AC</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">📞</div>
+          <div><h5>Telefone / WhatsApp</h5><p>+55 68 99924-6203</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">⭐</div>
+          <div><h5>Avaliação Google</h5><p>4.6 de 5</p></div>
+        </div>
+        <a class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20coleta%20de%20exames." target="_blank">Falar no WhatsApp</a>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=Av.+Get%C3%BAlio+Vargas,+1782,+Rio+Branco+-+AC&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-banner reveal">
+    <h2>Vamos cuidar da sua saúde?</h2>
+    <p>Agende sua coleta com o Real Análises e tenha resultados em que você pode confiar.</p>
+    <a class="btn btn-ghost-light" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20coleta%20de%20exames." target="_blank">📅 Agendar Coleta Agora</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="foot-logo"><span class="dot" style="width:10px;height:10px;background:var(--teal-500);border-radius:3px;display:inline-block;"></span>Real Análises</div>
+      <p style="max-width:320px;font-size:13.5px;">Laboratório de análises clínicas em Rio Branco - AC. Análises de verdade, resultados reais.</p>
+    </div>
+    <div>
+      <h5>Navegação</h5>
+      <ul>
+        <li><a href="#exames">Exames</a></li>
+        <li><a href="#porque">Diferenciais</a></li>
+        <li><a href="#convenios">Convênios</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contato</h5>
+      <ul>
+        <li>Av. Getúlio Vargas, 1782 — Bosque, Rio Branco, AC</li>
+        <li>+55 68 99924-6203</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container foot-bottom">
+    <span>© 2026 Real Análises. Todos os direitos reservados.</span>
+    <span>Laboratório de Análises Clínicas · Rio Branco, AC</span>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5568999246203?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20coleta%20de%20exames." target="_blank">📱<span class="ping"></span></a>
+
+<script>
+(function(){
+  var scheduleBtn = document.getElementById('scheduleBtn');
+  if (scheduleBtn) {
+    scheduleBtn.addEventListener('click', function(){
+      var exam = document.getElementById('fieldExam').value;
+      var period = document.getElementById('fieldPeriod').value;
+      var msg = 'Olá! Gostaria de agendar uma coleta';
+      if (exam) msg += ' de ' + exam;
+      if (period) msg += ', de preferência no período da ' + period.toLowerCase();
+      msg += '.';
+      window.open('https://wa.me/5568999246203?text=' + encodeURIComponent(msg), '_blank');
+    });
+  }
+
+  var header = document.getElementById('siteHeader');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 12); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Contador animado do hero (evolução do modelo base)
+  var statEl = document.getElementById('statNum');
+  if (statEl) {
+    var target = parseInt(statEl.getAttribute('data-target'), 10) || 0;
+    var animated = false;
+    var animateCount = function(){
+      if (animated) return;
+      animated = true;
+      var start = null;
+      var duration = 1600;
+      var step = function(ts){
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        statEl.textContent = Math.floor(eased * target).toLocaleString('pt-BR');
+        if (progress < 1) requestAnimationFrame(step);
+        else statEl.textContent = target.toLocaleString('pt-BR');
+      };
+      requestAnimationFrame(step);
+    };
+    if ('IntersectionObserver' in window) {
+      var statIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){ if (entry.isIntersecting) { animateCount(); statIo.disconnect(); } });
+      }, { threshold: 0.3 });
+      statIo.observe(statEl);
+    } else {
+      statEl.textContent = target.toLocaleString('pt-BR');
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
