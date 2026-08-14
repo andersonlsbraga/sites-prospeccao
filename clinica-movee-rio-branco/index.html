@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Movee | Seu Corpo em Movimento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --sage-900:#1F2E22;
+    --sage-800:#2C4030;
+    --sage-700:#3D5642;
+    --sage-600:#4F6E55;
+    --sage-500:#63876A;
+    --sage-400:#87A88C;
+    --sage-100:#E8EFE6;
+    --sage-50:#F5F3EC;
+    --gold:#D9B36C;
+    --ink:#20261F;
+    --gray-600:#5E6B5C;
+    --gray-400:#93A090;
+    --white:#FFFFFF;
+    --cream:#FBF9F3;
+    --star:#FFB020;
+    --shadow: 0 10px 30px rgba(31,46,34,0.09);
+    --radius: 16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);line-height:1.55;}
+  h1,h2,h3,.display{font-family:'Poppins',sans-serif;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--gold);color:var(--sage-900);box-shadow:0 8px 20px rgba(217,179,108,.4);}
+  .btn-primary:hover{background:#E5C384;}
+  .btn-outline{background:#fff;color:var(--sage-700);border-color:var(--sage-100);}
+  .btn-outline:hover{border-color:var(--sage-400);}
+  .btn-ghost-light{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.35);}
+
+  /* Utility bar */
+  .utility-bar{background:var(--sage-900);color:#CBDCCE;font-size:12px;letter-spacing:.3px;}
+  .utility-bar .container{display:flex;align-items:center;justify-content:space-between;padding:9px 24px;flex-wrap:wrap;gap:8px;}
+  .utility-links{display:flex;align-items:center;gap:22px;}
+  .utility-links a{opacity:.9;transition:opacity .15s;}
+  .utility-links a:hover{opacity:1;}
+  @media(max-width:760px){.utility-links span:not(:first-child){display:none;}}
+
+  /* Header — nav CENTRALIZADO */
+  header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,var(--sage-800),var(--sage-700));transition:box-shadow .3s ease;}
+  header.scrolled{box-shadow:0 10px 26px rgba(31,46,34,.25);}
+  .nav-centered{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding:16px 24px;max-width:1180px;margin:0 auto;}
+  .nav-side{display:flex;gap:26px;font-size:14px;font-weight:500;color:#fff;}
+  .nav-side a{opacity:.85;transition:opacity .15s;}
+  .nav-side a:hover{opacity:1;}
+  .nav-side.right{justify-content:flex-end;align-items:center;gap:20px;}
+  .logo-center{display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:700;font-size:20px;color:#fff;white-space:nowrap;}
+  .logo-center .dot{width:11px;height:11px;background:var(--gold);border-radius:50%;display:inline-block;}
+  .btn-on-sage{background:var(--gold);color:var(--sage-900);}
+  .btn-on-sage:hover{background:#E5C384;}
+  @media(max-width:920px){.nav-side.left{display:none;} .nav-centered{grid-template-columns:1fr auto;}}
+
+  /* ================= HERO — CENTERED_AUTHORITY ================= */
+  .hero-centered{position:relative;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%, var(--sage-800), var(--sage-900));color:#fff;padding-top:8px;}
+  .aurora{position:absolute;inset:-15%;z-index:0;filter:blur(70px);opacity:.5;pointer-events:none;}
+  .aurora span{position:absolute;border-radius:50%;}
+  .aurora span:nth-child(1){width:420px;height:420px;background:radial-gradient(circle, var(--sage-500), transparent 70%);top:-8%;left:6%;animation:auroraMove1 19s ease-in-out infinite;}
+  .aurora span:nth-child(2){width:380px;height:380px;background:radial-gradient(circle, var(--gold), transparent 70%);top:14%;right:4%;animation:auroraMove2 23s ease-in-out infinite;}
+  .aurora span:nth-child(3){width:360px;height:360px;background:radial-gradient(circle, var(--sage-400), transparent 70%);bottom:-18%;left:38%;animation:auroraMove1 27s ease-in-out infinite reverse;}
+  @keyframes auroraMove1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.15);}}
+  @keyframes auroraMove2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-35px,25px) scale(1.1);}}
+  .noise{position:absolute;inset:0;z-index:1;opacity:.04;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .hero-centered-inner{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:76px 24px 0;text-align:center;}
+  .hero-centered-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);font-weight:600;font-size:12.5px;padding:7px 16px;border-radius:999px;margin-bottom:26px;}
+  .hero-centered-badge .blip{width:7px;height:7px;background:var(--gold);border-radius:50%;}
+  .hero-centered-headline{font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(30px,4.4vw,50px);line-height:1.14;text-transform:uppercase;letter-spacing:.3px;}
+  .hero-centered-headline .script{display:block;font-family:'Pacifico',cursive;font-weight:400;text-transform:none;font-size:clamp(42px,6vw,66px);line-height:1.25;margin-top:6px;background:linear-gradient(100deg,var(--gold),#F3DFAE 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-centered-inner p.lead{margin:22px auto 0;font-size:16px;color:#DCE9DE;max-width:520px;}
+  .hero-centered-actions{display:flex;gap:14px;margin-top:32px;justify-content:center;flex-wrap:wrap;}
+  .hero-centered-rating{display:inline-flex;align-items:center;gap:10px;margin-top:34px;color:#fff;}
+  .hero-centered-rating .stars{color:var(--star);letter-spacing:2px;}
+  .hero-centered-rating b{font-family:'Poppins',sans-serif;font-size:20px;}
+  .hero-centered-rating span{color:#B9CDBC;font-size:12.5px;}
+
+  .hero-centered-media{position:relative;z-index:2;max-width:980px;margin:48px auto 0;padding:0 24px;}
+  .hero-centered-frame{position:relative;border-radius:26px;overflow:hidden;box-shadow:0 40px 84px rgba(10,16,10,.5);}
+  .hero-centered-frame img{width:100%;height:440px;object-fit:cover;display:block;}
+  .hero-centered-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(31,46,34,.55) 0%, transparent 45%);}
+
+  .hero-centered-metrics{position:relative;z-index:2;margin-top:0;padding:36px 24px 60px;}
+  .hero-centered-metrics .metrics-row{display:flex;justify-content:center;max-width:720px;margin:0 auto;}
+  .metric-item{flex:1;text-align:center;padding:0 18px;border-right:1px solid rgba(255,255,255,.15);}
+  .metric-item:last-child{border-right:none;}
+  .metric-item b{display:block;font-family:'Poppins',sans-serif;font-size:19px;color:#fff;}
+  .metric-item span{font-size:11.5px;color:#B9CDBC;}
+
+  @media (prefers-reduced-motion: reduce){ .aurora span{animation:none;} }
+
+  /* ================= "COMO FUNCIONA" — numerais fantasma (substitui o fluxo de cards escuros) ================= */
+  .moves{background:var(--cream);padding:76px 0 24px;}
+  .moves-head{text-align:center;max-width:560px;margin:0 auto 52px;}
+  .moves-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  @media(max-width:860px){.moves-grid{grid-template-columns:repeat(2,1fr);row-gap:40px;}}
+  .move-step{position:relative;padding:0 22px;text-align:center;border-right:1px solid var(--sage-100);}
+  .move-step:last-child{border-right:none;}
+  @media(max-width:860px){.move-step:nth-child(2n){border-right:none;} .move-step{border-bottom:1px solid var(--sage-100);padding-bottom:28px;} .move-step:nth-last-child(-n+2){border-bottom:none;}}
+  .move-step .ghost-num{font-family:'Poppins',sans-serif;font-weight:800;font-size:60px;color:var(--sage-100);line-height:1;margin-bottom:-14px;user-select:none;}
+  .move-step .ic{position:relative;z-index:1;width:44px;height:44px;margin:0 auto 14px;border-radius:12px;background:linear-gradient(135deg,var(--sage-600),var(--sage-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 8px 18px rgba(99,135,106,.35);}
+  .move-step h4{font-family:'Poppins',sans-serif;font-size:15px;color:var(--sage-900);margin-bottom:6px;}
+  .move-step p{font-size:12.5px;color:var(--gray-600);}
+
+  section{padding:88px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px;}
+  .eyebrow{color:var(--sage-600);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:block;}
+  .section-head h2{font-size:34px;color:var(--sage-900);font-weight:700;}
+  .section-head p{color:var(--gray-600);margin-top:12px;font-size:16px;}
+
+  /* Gallery head assimétrico (mantém os scrollers intactos) */
+  .gallery-head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:44px;}
+  @media(max-width:760px){.gallery-head{grid-template-columns:1fr;}}
+  .gallery-head h2{font-size:32px;color:var(--sage-900);font-weight:700;}
+  .gallery-head p{color:var(--gray-600);font-size:15.5px;}
+
+  /* ================= BENTO GRID com spotlight (inspirado em padrões 21st.dev) ================= */
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:18px;}
+  @media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.bento{grid-template-columns:1fr;grid-auto-rows:auto;}}
+  .bento-card{position:relative;overflow:hidden;border-radius:20px;background:linear-gradient(165deg,var(--sage-900),var(--sage-800));color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;}
+  .bento-card.alt{background:linear-gradient(165deg,var(--sage-700),var(--sage-600));}
+  .bento-card.large{grid-column:span 2;grid-row:span 2;}
+  .bento-card.wide{grid-column:span 2;}
+  @media(max-width:900px){.bento-card.large,.bento-card.wide{grid-column:span 2;}}
+  @media(max-width:560px){.bento-card.large{grid-row:span 1;min-height:220px;}}
+  .bento-card::before{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(217,179,108,.28), transparent 62%);opacity:0;transition:opacity .35s ease;pointer-events:none;z-index:0;}
+  .bento-card:hover::before{opacity:1;}
+  .bento-card .ic{position:relative;z-index:1;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+  .bento-card h4{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-size:16px;margin-bottom:6px;}
+  .bento-card.large h4{font-size:21px;}
+  .bento-card p{position:relative;z-index:1;font-size:12.5px;color:#CBDCCE;}
+  .bento-card.large p{font-size:14px;max-width:320px;}
+
+  /* Prova social — centralizada, número gigante */
+  .proof-centered{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--sage-900),var(--sage-800));color:#fff;border-radius:28px;margin:0 24px;padding:68px 24px;text-align:center;}
+  .proof-centered::after{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:420px;height:420px;background:radial-gradient(circle, rgba(217,179,108,.22), transparent 70%);pointer-events:none;}
+  .proof-centered .eyebrow{color:var(--gold);}
+  .proof-centered .num{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-weight:800;font-size:76px;line-height:1;margin:14px 0 8px;}
+  .proof-centered .stars{position:relative;z-index:1;color:var(--star);font-size:22px;letter-spacing:4px;margin-bottom:14px;}
+  .proof-centered p{position:relative;z-index:1;color:#CBDCCE;max-width:440px;margin:0 auto 18px;}
+  .proof-centered a{position:relative;z-index:1;color:#fff;text-decoration:underline;font-size:13.5px;}
+
+  /* Pagamento — lista inline em pill */
+  .pay-inline{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .pay-pill{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--sage-100);border-radius:999px;padding:14px 24px;box-shadow:0 8px 20px rgba(31,46,34,.06);transition:transform .25s ease, box-shadow .25s ease;}
+  .pay-pill:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(31,46,34,.14);}
+  .pay-pill .ic{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--sage-600),var(--sage-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;}
+  .pay-pill b{display:block;font-family:'Poppins',sans-serif;font-size:14px;color:var(--sage-900);}
+  .pay-pill span{font-size:12px;color:var(--gray-600);}
+
+  /* Sobre — banner full-width com card sobreposto centralizado */
+  .about-banner{position:relative;border-radius:28px;overflow:hidden;margin:0 24px;height:420px;}
+  .about-banner img{width:100%;height:100%;object-fit:cover;}
+  .about-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(31,46,34,.85) 0%, rgba(31,46,34,.15) 55%, transparent 80%);}
+  .about-overlap{position:relative;max-width:760px;margin:-110px auto 0;background:#fff;border-radius:22px;padding:44px;box-shadow:0 30px 60px rgba(31,46,34,.2);text-align:center;z-index:2;}
+  .about-overlap .stars{color:var(--star);font-size:16px;letter-spacing:2px;margin-bottom:10px;}
+  .about-overlap h2{font-size:27px;color:var(--sage-900);font-weight:700;margin-bottom:14px;}
+  .about-overlap p{color:var(--gray-600);}
+  .about-list{margin-top:24px;display:inline-flex;flex-direction:column;gap:12px;text-align:left;}
+  .about-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--gray-600);}
+  .about-list b{color:var(--ink);}
+  .check{flex:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--sage-600),var(--sage-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:2px;box-shadow:0 6px 14px rgba(99,135,106,.35);}
+
+  /* Contato */
+  .contact{background:var(--sage-50);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;}
+  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:#fff;border-radius:20px;padding:36px;box-shadow:var(--shadow);}
+  .contact-item{display:flex;gap:14px;margin-bottom:22px;}
+  .contact-item .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--sage-100);color:var(--sage-700);display:flex;align-items:center;justify-content:center;}
+  .contact-item h5{font-size:14px;color:var(--gray-600);margin-bottom:2px;}
+  .contact-item p{font-weight:600;font-size:15px;}
+  .map-wrap{border-radius:20px;overflow:hidden;box-shadow:var(--shadow);min-height:340px;}
+  .map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;}
+
+  /* CTA banner — foto full-bleed */
+  .cta-banner-photo{position:relative;border-radius:28px;margin:0 24px;overflow:hidden;min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;}
+  .cta-banner-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .cta-banner-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(165deg, rgba(31,46,34,.92), rgba(31,46,34,.65));}
+  .cta-banner-photo .inner{position:relative;z-index:2;padding:24px;max-width:560px;}
+  .cta-banner-photo h2{font-family:'Poppins',sans-serif;font-size:32px;margin-bottom:14px;}
+  .cta-banner-photo p{color:#DCE9DE;margin-bottom:28px;}
+
+  /* Footer centralizado */
+  footer{background:var(--sage-900);color:#CBDCCE;padding:56px 0 24px;margin-top:88px;text-align:center;}
+  .foot-logo-center{display:inline-flex;align-items:center;gap:8px;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:20px;margin-bottom:18px;}
+  .foot-nav{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:22px;font-size:14px;}
+  .foot-info{font-size:13.5px;color:#B9CDBC;margin-bottom:8px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:32px;padding-top:20px;font-size:12.5px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;color:#8FAD97;}
+
+  .whatsapp-float{position:fixed;bottom:24px;right:24px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:60;font-size:28px;transition:transform .4s ease;}
+  .whatsapp-float:hover{transform:scale(1.1) rotate(6deg);}
+  .whatsapp-float .ping{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#FF4D4D;border-radius:50%;border:2px solid #fff;animation:pulseDot 2s ease-in-out infinite;}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.55;transform:scale(1.2);}}
+
+  /* ================= MODAL de agendamento ================= */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(15,20,13,.6);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:100;}
+  .modal-backdrop.is-open{opacity:1;pointer-events:auto;}
+  .schedule-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.94);width:min(420px,90vw);background:#fff;border-radius:22px;padding:34px;box-shadow:0 40px 80px rgba(15,20,13,.4);opacity:0;pointer-events:none;transition:opacity .3s ease, transform .3s ease;z-index:101;}
+  .schedule-modal.is-open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1);}
+  .modal-close{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:50%;background:var(--sage-50);color:var(--sage-700);border:none;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .modal-close:hover{background:var(--sage-100);}
+  .schedule-modal h3{font-family:'Poppins',sans-serif;font-size:19px;color:var(--sage-900);margin-bottom:6px;}
+  .schedule-modal p.sub{font-size:13px;color:var(--gray-600);margin-bottom:22px;}
+  .schedule-modal .field{margin-bottom:16px;}
+  .schedule-modal .field label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:6px;}
+  .schedule-modal .field select{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--sage-100);font-size:13.5px;color:var(--ink);background:#fff;font-family:'Inter',sans-serif;}
+  .schedule-modal .field select:focus{outline:none;border-color:var(--sage-500);}
+  .schedule-modal .btn{width:100%;justify-content:center;}
+  @media(max-width:600px){.schedule-modal{padding:28px;}}
+
+  /* Scroll reveal */
+  .reveal, .reveal-stagger > *{opacity:1;transform:none;}
+  .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);}
+  .js .reveal.is-visible{opacity:1;transform:translateY(0);}
+  .js .reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);}
+  .js .reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+  .js .reveal-stagger.is-visible > *:nth-child(1){transition-delay:.04s;}
+  .js .reveal-stagger.is-visible > *:nth-child(2){transition-delay:.09s;}
+  .js .reveal-stagger.is-visible > *:nth-child(3){transition-delay:.14s;}
+  .js .reveal-stagger.is-visible > *:nth-child(4){transition-delay:.19s;}
+  .js .reveal-stagger.is-visible > *:nth-child(5){transition-delay:.24s;}
+  .js .reveal-stagger.is-visible > *:nth-child(6){transition-delay:.29s;}
+  .js .reveal-stagger.is-visible > *:nth-child(7){transition-delay:.34s;}
+  .js .reveal-stagger.is-visible > *:nth-child(8){transition-delay:.39s;}
+  .js .reveal-stagger.is-visible > *:nth-child(9){transition-delay:.44s;}
+  .js .reveal-stagger.is-visible > *:nth-child(10){transition-delay:.49s;}
+  .js .reveal-stagger.is-visible > *:nth-child(11){transition-delay:.54s;}
+  .js .reveal-stagger.is-visible > *:nth-child(12){transition-delay:.59s;}
+
+  /* Border-run */
+  @property --angle{syntax:'<angle>';inherits:false;initial-value:0deg;}
+  .border-run{position:relative;isolation:isolate;}
+  .border-run::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;
+    background:conic-gradient(from var(--angle), transparent 0deg, var(--sage-500) 60deg, var(--gold) 140deg, transparent 200deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation:borderRun 6s linear infinite;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2;}
+  .border-run:hover::before{opacity:1;animation-duration:2.2s;}
+  @keyframes borderRun{100%{--angle:360deg;}}
+
+  /* ============ Gallery scroller — MANTIDO exatamente (dois sentidos, pausa no hover) ============ */
+  .gallery-rows{display:flex;flex-direction:column;gap:22px;padding:12px 0 8px;}
+  .gallery-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
+  .gallery-track{display:flex;width:max-content;gap:22px;animation:galleryLeft 55s linear infinite;}
+  .gallery-track.reverse{animation-name:galleryRight;}
+  .gallery-wrap:hover .gallery-track{animation-play-state:paused;}
+  @keyframes galleryLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes galleryRight{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  .gallery-card{position:relative;width:280px;height:320px;flex-shrink:0;border-radius:22px;overflow:hidden;display:block;box-shadow:0 8px 20px rgba(31,46,34,.12);transition:transform .5s ease, box-shadow .5s ease;}
+  .gallery-card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(31,46,34,.24);}
+  .gallery-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+  .gallery-card:hover img{transform:scale(1.1);}
+  .gallery-card .overlay{position:absolute;inset:0;background:linear-gradient(0deg, var(--sage-900) 0%, rgba(31,46,34,.6) 42%, rgba(31,46,34,.05) 75%);}
+  .gallery-card .content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#fff;}
+  .gallery-card .gic{width:42px;height:42px;border-radius:12px;background:var(--sage-500);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:12px;}
+  .gallery-card h4{font-family:'Poppins',sans-serif;font-size:16.5px;margin-bottom:4px;}
+  .gallery-card p{font-size:12.5px;color:#DDE9DF;}
+  @media(max-width:600px){.gallery-card{width:230px;height:280px;}}
+
+  @media (prefers-reduced-motion: reduce){
+    .gallery-track{animation:none;}
+    .border-run::before{animation:none;}
+    .js .reveal, .js .reveal-stagger > *{transition:none;opacity:1;transform:none;}
+    .whatsapp-float .ping{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-links">
+      <span>R. Isaura Parente, Nº 1240 - Anexo · Rio Branco - AC</span>
+      <span>+55 68 99238-0083</span>
+    </div>
+    <div class="utility-links">
+      <a href="https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+Movee+Reabilita%C3%A7%C3%A3o+e+Sa%C3%BAde+Rio+Branco+AC" target="_blank">★ 4.9 · Ver avaliações no Google</a>
+    </div>
+  </div>
+</div>
+
+<header id="siteHeader">
+  <div class="nav-centered">
+    <div class="nav-side left">
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#porque">Diferenciais</a>
+    </div>
+    <div class="logo-center"><span class="dot"></span>Clínica Movee</div>
+    <div class="nav-side right">
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+      <a class="btn btn-on-sage open-modal" href="#" style="padding:10px 20px;font-size:13.5px;">Agendar</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO — CENTERED_AUTHORITY ================= -->
+<section class="hero-centered">
+  <div class="aurora"><span></span><span></span><span></span></div>
+  <div class="noise"></div>
+  <div class="hero-centered-inner">
+    <span class="hero-centered-badge"><span class="blip"></span> Fisioterapia e Reabilitação em Rio Branco</span>
+    <h1 class="hero-centered-headline">Seu corpo em<span class="script">Movimento</span></h1>
+    <p class="lead">Fisioterapia e reabilitação com acompanhamento próximo, técnicas atuais e um único objetivo: devolver seu movimento e sua qualidade de vida.</p>
+    <div class="hero-centered-actions">
+      <a class="btn btn-primary open-modal" href="#">Agendar Avaliação</a>
+      <a class="btn btn-ghost-light" href="https://wa.me/5568992380083" target="_blank">💬 Falar no WhatsApp</a>
+    </div>
+    <div class="hero-centered-rating">
+      <span class="stars">★★★★★</span>
+      <div style="text-align:left;">
+        <b id="ratingNum" data-target="4.9">0.0</b>
+        <span style="display:block;">no Google · avaliação real dos pacientes</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-centered-media">
+    <div class="hero-centered-frame">
+      <img src="https://images.unsplash.com/photo-1706353399656-210cca727a33?q=80&w=1800&auto=format&fit=crop" alt="Sessão de fisioterapia na Clínica Movee">
+    </div>
+  </div>
+  <div class="hero-centered-metrics">
+    <div class="metrics-row">
+      <div class="metric-item"><b>★ 4.9</b><span>no Google</span></div>
+      <div class="metric-item"><b>Humanizado</b><span>Atendimento próximo</span></div>
+      <div class="metric-item"><b>Especializada</b><span>Reabilitação completa</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= "Como funciona" — numerais fantasma ================= -->
+<div class="container moves">
+  <div class="moves-head reveal">
+    <span class="eyebrow">Como funciona</span>
+    <h2>Seu caminho até o movimento de volta</h2>
+  </div>
+  <div class="moves-grid reveal-stagger">
+    <a class="move-step" href="#" onclick="document.querySelector('.open-modal').click();return false;">
+      <div class="ghost-num">01</div>
+      <div class="ic">📅</div>
+      <h4>Agendar Avaliação</h4>
+      <p>Resposta rápida pelo WhatsApp</p>
+    </a>
+    <a class="move-step" href="#tratamentos">
+      <div class="ghost-num">02</div>
+      <div class="ic">🧘</div>
+      <h4>Nossos Tratamentos</h4>
+      <p>Fisioterapia, RPG e Pilates clínico</p>
+    </a>
+    <a class="move-step" href="#convenios">
+      <div class="ghost-num">03</div>
+      <div class="ic">💳</div>
+      <h4>Convênios e Pagamento</h4>
+      <p>Particular, Pix e pacotes de sessões</p>
+    </a>
+    <a class="move-step" href="#contato">
+      <div class="ghost-num">04</div>
+      <div class="ic">📍</div>
+      <h4>Nossa Unidade</h4>
+      <p>R. Isaura Parente, 1240</p>
+    </a>
+  </div>
+</div>
+
+<section id="tratamentos" style="padding-bottom:56px;">
+  <div class="container">
+    <div class="gallery-head reveal">
+      <div>
+        <span class="eyebrow">Tratamentos</span>
+        <h2>Reabilitação completa, no seu ritmo</h2>
+      </div>
+      <p>Fisioterapia ortopédica, esportiva e Pilates clínico com equipe especializada e acompanhamento próximo em cada sessão.</p>
+    </div>
+  </div>
+  <div class="gallery-rows">
+    <div class="gallery-wrap">
+      <div class="gallery-track">
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Fisioterapia%20Ortop%C3%A9dica."><img src="https://images.unsplash.com/photo-1706353399656-210cca727a33?q=75&w=700&auto=format&fit=crop" alt="Fisioterapia Ortopédica"><div class="overlay"></div><div class="content"><div class="gic">🦴</div><h4>Fisioterapia Ortopédica</h4><p>Recuperação de lesões e dores</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Reabilita%C3%A7%C3%A3o%20P%C3%B3s-Cir%C3%BArgica."><img src="https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?q=75&w=700&auto=format&fit=crop" alt="Reabilitação Pós-Cirúrgica"><div class="overlay"></div><div class="content"><div class="gic">🏥</div><h4>Reabilitação Pós-Cirúrgica</h4><p>Recuperação segura e acompanhada</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Fisioterapia%20Esportiva."><img src="https://images.unsplash.com/photo-1770012905139-713758ded6ec?q=75&w=700&auto=format&fit=crop" alt="Fisioterapia Esportiva"><div class="overlay"></div><div class="content"><div class="gic">🏃</div><h4>Fisioterapia Esportiva</h4><p>Prevenção e recuperação de atletas</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20RPG."><img src="https://images.unsplash.com/photo-1522898467493-49726bf28798?q=75&w=700&auto=format&fit=crop" alt="RPG"><div class="overlay"></div><div class="content"><div class="gic">🧍</div><h4>RPG</h4><p>Reeducação postural global</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Quiropraxia."><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=75&w=700&auto=format&fit=crop" alt="Quiropraxia"><div class="overlay"></div><div class="content"><div class="gic">🩻</div><h4>Quiropraxia</h4><p>Alívio de dores na coluna</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Cinesioterapia."><img src="https://images.unsplash.com/photo-1645005512942-a17817fb7c11?q=75&w=700&auto=format&fit=crop" alt="Cinesioterapia"><div class="overlay"></div><div class="content"><div class="gic">🤸</div><h4>Cinesioterapia</h4><p>Exercícios terapêuticos guiados</p></div></a>
+        <!-- duplicado p/ loop contínuo -->
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Fisioterapia%20Ortop%C3%A9dica."><img src="https://images.unsplash.com/photo-1706353399656-210cca727a33?q=75&w=700&auto=format&fit=crop" alt="Fisioterapia Ortopédica"><div class="overlay"></div><div class="content"><div class="gic">🦴</div><h4>Fisioterapia Ortopédica</h4><p>Recuperação de lesões e dores</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Reabilita%C3%A7%C3%A3o%20P%C3%B3s-Cir%C3%BArgica."><img src="https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?q=75&w=700&auto=format&fit=crop" alt="Reabilitação Pós-Cirúrgica"><div class="overlay"></div><div class="content"><div class="gic">🏥</div><h4>Reabilitação Pós-Cirúrgica</h4><p>Recuperação segura e acompanhada</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Fisioterapia%20Esportiva."><img src="https://images.unsplash.com/photo-1770012905139-713758ded6ec?q=75&w=700&auto=format&fit=crop" alt="Fisioterapia Esportiva"><div class="overlay"></div><div class="content"><div class="gic">🏃</div><h4>Fisioterapia Esportiva</h4><p>Prevenção e recuperação de atletas</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20RPG."><img src="https://images.unsplash.com/photo-1522898467493-49726bf28798?q=75&w=700&auto=format&fit=crop" alt="RPG"><div class="overlay"></div><div class="content"><div class="gic">🧍</div><h4>RPG</h4><p>Reeducação postural global</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Quiropraxia."><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=75&w=700&auto=format&fit=crop" alt="Quiropraxia"><div class="overlay"></div><div class="content"><div class="gic">🩻</div><h4>Quiropraxia</h4><p>Alívio de dores na coluna</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Cinesioterapia."><img src="https://images.unsplash.com/photo-1645005512942-a17817fb7c11?q=75&w=700&auto=format&fit=crop" alt="Cinesioterapia"><div class="overlay"></div><div class="content"><div class="gic">🤸</div><h4>Cinesioterapia</h4><p>Exercícios terapêuticos guiados</p></div></a>
+      </div>
+    </div>
+    <div class="gallery-wrap">
+      <div class="gallery-track reverse">
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Terapia%20com%20Faixas%20El%C3%A1sticas."><img src="https://images.unsplash.com/photo-1645005513709-77336f075dc8?q=75&w=700&auto=format&fit=crop" alt="Terapia com Faixas Elásticas"><div class="overlay"></div><div class="content"><div class="gic">🎗️</div><h4>Faixas Elásticas</h4><p>Fortalecimento progressivo e seguro</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Pilates%20Cl%C3%ADnico."><img src="https://images.unsplash.com/photo-1747239685045-fcbcf98985db?q=75&w=700&auto=format&fit=crop" alt="Pilates Clínico"><div class="overlay"></div><div class="content"><div class="gic">🧘‍♀️</div><h4>Pilates Clínico</h4><p>Fortalecimento com propósito terapêutico</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Pilates%20com%20Aparelhos."><img src="https://images.unsplash.com/photo-1717500252709-05a73fc4f1da?q=75&w=700&auto=format&fit=crop" alt="Pilates com Aparelhos"><div class="overlay"></div><div class="content"><div class="gic">⚙️</div><h4>Pilates com Aparelhos</h4><p>Reformer e cadillac especializados</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Est%C3%BAdio%20de%20Pilates."><img src="https://images.unsplash.com/photo-1754258167836-6878c54e316c?q=75&w=700&auto=format&fit=crop" alt="Estúdio de Pilates"><div class="overlay"></div><div class="content"><div class="gic">🏋️‍♀️</div><h4>Estúdio de Pilates</h4><p>Ambiente exclusivo e climatizado</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Pilates%20Reformer."><img src="https://images.unsplash.com/photo-1747238415033-b74eec07eb59?q=75&w=700&auto=format&fit=crop" alt="Pilates Reformer"><div class="overlay"></div><div class="content"><div class="gic">🔗</div><h4>Pilates Reformer</h4><p>Equipamento de referência mundial</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Ambiente%20Especializado."><img src="https://images.unsplash.com/photo-1783841193384-4269c68aa050?q=75&w=700&auto=format&fit=crop" alt="Ambiente Especializado"><div class="overlay"></div><div class="content"><div class="gic">✨</div><h4>Ambiente Especializado</h4><p>Estrutura pensada pra sua recuperação</p></div></a>
+        <!-- duplicado p/ loop contínuo -->
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Terapia%20com%20Faixas%20El%C3%A1sticas."><img src="https://images.unsplash.com/photo-1645005513709-77336f075dc8?q=75&w=700&auto=format&fit=crop" alt="Terapia com Faixas Elásticas"><div class="overlay"></div><div class="content"><div class="gic">🎗️</div><h4>Faixas Elásticas</h4><p>Fortalecimento progressivo e seguro</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Pilates%20Cl%C3%ADnico."><img src="https://images.unsplash.com/photo-1747239685045-fcbcf98985db?q=75&w=700&auto=format&fit=crop" alt="Pilates Clínico"><div class="overlay"></div><div class="content"><div class="gic">🧘‍♀️</div><h4>Pilates Clínico</h4><p>Fortalecimento com propósito terapêutico</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Pilates%20com%20Aparelhos."><img src="https://images.unsplash.com/photo-1717500252709-05a73fc4f1da?q=75&w=700&auto=format&fit=crop" alt="Pilates com Aparelhos"><div class="overlay"></div><div class="content"><div class="gic">⚙️</div><h4>Pilates com Aparelhos</h4><p>Reformer e cadillac especializados</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Est%C3%BAdio%20de%20Pilates."><img src="https://images.unsplash.com/photo-1754258167836-6878c54e316c?q=75&w=700&auto=format&fit=crop" alt="Estúdio de Pilates"><div class="overlay"></div><div class="content"><div class="gic">🏋️‍♀️</div><h4>Estúdio de Pilates</h4><p>Ambiente exclusivo e climatizado</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20Pilates%20Reformer."><img src="https://images.unsplash.com/photo-1747238415033-b74eec07eb59?q=75&w=700&auto=format&fit=crop" alt="Pilates Reformer"><div class="overlay"></div><div class="content"><div class="gic">🔗</div><h4>Pilates Reformer</h4><p>Equipamento de referência mundial</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Ambiente%20Especializado."><img src="https://images.unsplash.com/photo-1783841193384-4269c68aa050?q=75&w=700&auto=format&fit=crop" alt="Ambiente Especializado"><div class="overlay"></div><div class="content"><div class="gic">✨</div><h4>Ambiente Especializado</h4><p>Estrutura pensada pra sua recuperação</p></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Diferenciais — BENTO GRID com spotlight ================= -->
+<section id="porque">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Diferenciais</span>
+      <h2>Por que a Clínica Movee</h2>
+      <p>Cada detalhe pensado pra você recuperar seu movimento com segurança e acompanhamento de verdade.</p>
+    </div>
+    <div class="bento reveal-stagger">
+      <div class="bento-card large"><div class="ic">①</div><h4>Avaliação individualizada</h4><p>Cada tratamento começa com um diagnóstico completo, pensado pro seu corpo e sua história — não um protocolo genérico.</p></div>
+      <div class="bento-card alt"><div class="ic">②</div><h4>Equipe especializada</h4><p>Fisioterapeutas com foco em cada tipo de reabilitação.</p></div>
+      <div class="bento-card"><div class="ic">③</div><h4>Pilates clínico</h4><p>Fortalecimento com equipamentos próprios.</p></div>
+      <div class="bento-card wide alt"><div class="ic">④</div><h4>Acompanhamento contínuo</h4><p>Sua evolução registrada e ajustada a cada sessão.</p></div>
+      <div class="bento-card"><div class="ic">⑤</div><h4>Ambiente climatizado</h4><p>Estrutura pensada pro seu conforto.</p></div>
+      <div class="bento-card"><div class="ic">⑥</div><h4>Atendimento humanizado</h4><p>Cuidado de verdade em cada etapa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="proof-centered reveal">
+    <span class="eyebrow">Avaliação real, direto do Google</span>
+    <div class="num">4.9</div>
+    <div class="stars">★★★★★</div>
+    <p>A nota que os próprios pacientes deram para o atendimento da Clínica Movee.</p>
+    <a href="https://www.google.com/maps/search/?api=1&query=Cl%C3%ADnica+Movee+Reabilita%C3%A7%C3%A3o+e+Sa%C3%BAde+Rio+Branco+AC" target="_blank">Ver avaliações no Google →</a>
+  </div>
+</section>
+
+<section id="convenios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Convênios e Pagamento</span>
+      <h2>Cuidar do seu movimento sem pesar no bolso</h2>
+      <p>Facilidade de pagamento pra você manter a constância do tratamento.</p>
+    </div>
+    <div class="pay-inline reveal-stagger">
+      <div class="pay-pill"><div class="ic">💳</div><div><b>Pagamento facilitado</b><span>Pix, cartão e dinheiro</span></div></div>
+      <div class="pay-pill"><div class="ic">📦</div><div><b>Pacotes de sessões</b><span>Condições especiais pra continuidade</span></div></div>
+      <div class="pay-pill"><div class="ic">🤝</div><div><b>Avaliação sem compromisso</b><span>Diagnóstico inicial gratuito</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Sobre — banner full-width com card sobreposto ================= -->
+<section id="sobre">
+  <div class="about-banner reveal">
+    <img src="https://images.unsplash.com/photo-1747239069226-55382c570116?q=80&w=1800&auto=format&fit=crop" alt="Estrutura da Clínica Movee">
+  </div>
+  <div class="about-overlap reveal">
+    <div class="stars">★★★★★</div>
+    <span class="eyebrow">Sobre a clínica</span>
+    <h2>Reabilitação com propósito, movimento com significado</h2>
+    <p>A Clínica Movee nasceu pra unir fisioterapia, reabilitação e Pilates clínico num só lugar, com uma equipe que acompanha cada paciente de perto. Nosso compromisso não é só tratar a dor — é devolver o movimento e a qualidade de vida de quem confia na gente.</p>
+    <ul class="about-list">
+      <li><span class="check">✓</span><span><b>Avaliação individualizada</b> em cada início de tratamento.</span></li>
+      <li><span class="check">✓</span><span><b>Equipe especializada</b> acompanhando sua evolução de perto.</span></li>
+      <li><span class="check">✓</span><span><b>Nota 4.9 no Google</b>, com avaliações reais de pacientes.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contato</span>
+      <h2>Estamos prontos para cuidar do seu movimento</h2>
+    </div>
+    <div class="contact-grid reveal-stagger">
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=R.+Isaura+Parente,+1240,+Rio+Branco+-+AC&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="ic">📍</div>
+          <div><h5>Endereço</h5><p>R. Isaura Parente, Nº 1240 - Anexo, Rio Branco, AC</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">📞</div>
+          <div><h5>Telefone / WhatsApp</h5><p>+55 68 99238-0083</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">⭐</div>
+          <div><h5>Avaliação Google</h5><p>4.9 de 5</p></div>
+        </div>
+        <a class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank">Falar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-banner-photo reveal">
+    <img src="https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?q=80&w=1600&auto=format&fit=crop" alt="Recomece seu movimento com a Clínica Movee">
+    <div class="inner">
+      <h2>Vamos recomeçar seu movimento?</h2>
+      <p>Agende sua avaliação com a Clínica Movee e dê o primeiro passo pra recuperar sua qualidade de vida.</p>
+      <a class="btn btn-primary open-modal" href="#">📅 Agendar Avaliação Agora</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-logo-center"><span class="dot" style="width:9px;height:9px;background:var(--gold);border-radius:50%;display:inline-block;"></span>Clínica Movee</div>
+    <div class="foot-nav">
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#porque">Diferenciais</a>
+      <a href="#convenios">Pagamento</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="foot-info">R. Isaura Parente, Nº 1240 - Anexo, Rio Branco, AC · +55 68 99238-0083</div>
+    <div class="foot-bottom">
+      <span>© 2026 Clínica Movee Reabilitação e Saúde. Todos os direitos reservados.</span>
+      <span>Fisioterapia e Reabilitação · Rio Branco, AC</span>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5568992380083?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank">📱<span class="ping"></span></a>
+
+<!-- ================= Modal de agendamento ================= -->
+<div class="modal-backdrop" id="modalBackdrop"></div>
+<div class="schedule-modal" id="scheduleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <button type="button" class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+  <h3 id="modalTitle">Agende sua avaliação</h3>
+  <p class="sub">Preencha e a gente já te chama no WhatsApp.</p>
+  <div class="field">
+    <label for="fieldTreatment">Tipo de sessão</label>
+    <select id="fieldTreatment">
+      <option value="">Qualquer tipo</option>
+      <option>Fisioterapia Ortopédica</option>
+      <option>Reabilitação Pós-Cirúrgica</option>
+      <option>Fisioterapia Esportiva</option>
+      <option>RPG</option>
+      <option>Pilates Clínico</option>
+      <option>Avaliação Inicial</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="fieldPeriod">Prefere ser atendido</label>
+    <select id="fieldPeriod">
+      <option value="">Qualquer horário</option>
+      <option>Manhã</option>
+      <option>Tarde</option>
+    </select>
+  </div>
+  <button type="button" id="scheduleBtn" class="btn btn-primary">Agendar →</button>
+</div>
+
+<script>
+(function(){
+  var header = document.getElementById('siteHeader');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 12); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* Modal de agendamento */
+  var backdrop = document.getElementById('modalBackdrop');
+  var modal = document.getElementById('scheduleModal');
+  var openModal = function(){
+    backdrop.classList.add('is-open');
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+  var closeModal = function(){
+    backdrop.classList.remove('is-open');
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+  document.querySelectorAll('.open-modal').forEach(function(btn){
+    btn.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+  });
+  backdrop.addEventListener('click', closeModal);
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeModal(); });
+
+  var scheduleBtn = document.getElementById('scheduleBtn');
+  scheduleBtn.addEventListener('click', function(){
+    var treatment = document.getElementById('fieldTreatment').value;
+    var period = document.getElementById('fieldPeriod').value;
+    var msg = 'Olá! Gostaria de agendar uma avaliação';
+    if (treatment) msg += ' de ' + treatment;
+    if (period) msg += ', de preferência no período da ' + period.toLowerCase();
+    msg += '.';
+    window.open('https://wa.me/5568992380083?text=' + encodeURIComponent(msg), '_blank');
+    closeModal();
+  });
+
+  /* Spotlight nos cards do bento grid */
+  document.querySelectorAll('.bento-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    });
+  });
+
+  /* Contador da avaliação (0.0 → 4.9) */
+  var ratingEl = document.getElementById('ratingNum');
+  if (ratingEl) {
+    var target = parseFloat(ratingEl.getAttribute('data-target')) || 0;
+    var animated = false;
+    var animateRating = function(){
+      if (animated) return;
+      animated = true;
+      var start = null;
+      var duration = 1400;
+      var step = function(ts){
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        ratingEl.textContent = (eased * target).toFixed(1);
+        if (progress < 1) requestAnimationFrame(step);
+        else ratingEl.textContent = target.toFixed(1);
+      };
+      requestAnimationFrame(step);
+    };
+    if ('IntersectionObserver' in window) {
+      var ratingIo = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){ if (entry.isIntersecting) { animateRating(); ratingIo.disconnect(); } });
+      }, { threshold: 0.4 });
+      ratingIo.observe(ratingEl);
+    } else {
+      ratingEl.textContent = target.toFixed(1);
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
