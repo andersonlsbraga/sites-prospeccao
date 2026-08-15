@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distribuidora Morgado | Bebidas sempre geladas em Rio Branco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --brand-900:#062A4A;
+    --brand-800:#0B3D63;
+    --brand-700:#0F5480;
+    --brand-600:#147AAD;
+    --brand-500:#1AA6D9;
+    --brand-400:#5FD1F0;
+    --brand-100:#E3F7FC;
+    --brand-50:#F2FCFE;
+    --ink:#0B1F2E;
+    --gray-600:#5C7180;
+    --gray-400:#93A6B1;
+    --white:#FFFFFF;
+    --star:#FFB020;
+    --shadow: 0 10px 30px rgba(6,42,74,0.08);
+    --radius: 16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--white);line-height:1.55;}
+  h1,h2,h3,.display{font-family:'Poppins',sans-serif;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;font-size:15px;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--brand-500);color:#fff;box-shadow:0 8px 20px rgba(26,166,217,.35);}
+  .btn-primary:hover{background:var(--brand-600);}
+  .btn-outline{background:#fff;color:var(--brand-700);border-color:var(--brand-100);}
+  .btn-outline:hover{border-color:var(--brand-400);}
+  .btn-ghost-light{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.35);}
+
+  /* Utility bar */
+  .utility-bar{background:linear-gradient(90deg,var(--brand-900),var(--brand-800));color:#CDEFFB;font-size:12.5px;}
+  .utility-bar .container{display:flex;align-items:center;justify-content:space-between;padding:9px 24px;flex-wrap:wrap;gap:8px;}
+  .utility-links{display:flex;align-items:center;gap:22px;}
+  .utility-links a{opacity:.9;transition:opacity .15s;}
+  .utility-links a:hover{opacity:1;}
+  @media(max-width:760px){.utility-links span:not(:first-child){display:none;}}
+
+  /* Header / main nav */
+  header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,var(--brand-700),var(--brand-500));transition:box-shadow .3s ease;}
+  header.scrolled{box-shadow:0 10px 26px rgba(6,42,74,.25);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:700;font-size:21px;color:#fff;}
+  .logo .dot{width:12px;height:12px;background:#fff;border-radius:4px;display:inline-block;opacity:.9;}
+  .logo span.light{font-weight:500;color:rgba(255,255,255,.75);}
+  .nav-links{display:flex;gap:30px;font-size:14.5px;font-weight:500;color:#fff;}
+  .nav-links a{opacity:.85;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;}
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .nav-search{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;transition:background .2s;flex:none;}
+  .nav-search:hover{background:rgba(255,255,255,.28);}
+  .btn-on-brand{background:#fff;color:var(--brand-700);}
+  .btn-on-brand:hover{background:var(--brand-50);}
+  @media(max-width:860px){.nav-links{display:none;}}
+
+  /* ============ HERO — TYPOGRAPHIC_FIRST ============
+     Prompt cirurgico aplicado (hero-architectures.md):
+     sem foto grande (produto nao tem "hero shot" fotografico proprio),
+     tipografia gigante carrega a composicao + bolhas decorativas em CSS. */
+  .hero-typo{
+    position:relative;overflow:hidden;
+    min-height:640px;
+    padding:88px 24px 76px;
+    background:radial-gradient(120% 100% at 50% -10%, var(--brand-800) 0%, var(--brand-900) 55%, #041D33 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    color:#fff;
+  }
+  .hero-typo .blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;opacity:.35;}
+  .hero-typo .blob-a{width:420px;height:420px;background:var(--brand-500);top:-160px;left:-120px;}
+  .hero-typo .blob-b{width:360px;height:360px;background:var(--brand-400);bottom:-180px;right:-100px;opacity:.25;}
+  .bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;}
+  .bubble{position:absolute;bottom:-40px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);animation:bubbleUp linear infinite;}
+  @keyframes bubbleUp{0%{transform:translateY(0) scale(1);opacity:0;}10%{opacity:.9;}100%{transform:translateY(-720px) scale(1.3);opacity:0;}}
+  .hero-typo-inner{position:relative;z-index:2;max-width:900px;display:flex;flex-direction:column;align-items:center;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);font-weight:600;font-size:12.5px;padding:7px 16px;border-radius:999px;margin-bottom:26px;color:#fff;}
+  .hero-badge .blip{width:7px;height:7px;background:var(--brand-400);border-radius:50%;}
+  .hero-typo h1{font-weight:800;text-transform:uppercase;line-height:.98;letter-spacing:-.01em;font-size:clamp(2.4rem,7.2vw,5.2rem);}
+  .hero-typo h1 .gradword{background:linear-gradient(100deg,var(--brand-400),#fff 55%,var(--brand-400));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hero-typo p.lead{margin-top:22px;font-size:17.5px;color:#D7EFFA;max-width:46ch;}
+  .hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:32px;}
+  .hero-stats{display:flex;align-items:center;gap:22px;margin-top:44px;flex-wrap:wrap;justify-content:center;font-size:13px;color:#BFE6F5;}
+  .hero-stats b{color:#fff;font-family:'Poppins',sans-serif;}
+  .hero-stats .divider{width:1px;height:18px;background:rgba(255,255,255,.25);}
+  @media(max-width:600px){.hero-stats .divider{display:none;}}
+
+  /* Order section (substitui o schedule-card flutuante — nao ha foto pra sobrepor) */
+  .order-wrap{padding:0 24px;margin-top:-46px;position:relative;z-index:6;}
+  .order-card{max-width:980px;margin:0 auto;background:#fff;border-radius:22px;box-shadow:0 26px 60px rgba(6,42,74,.22);display:grid;grid-template-columns:210px 1fr;overflow:hidden;}
+  @media(max-width:760px){.order-card{grid-template-columns:1fr;}}
+  .order-loc{background:linear-gradient(160deg,#FFCF5C,#FFB020);padding:26px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;color:#4A3300;transition:filter .2s;}
+  .order-loc:hover{filter:brightness(1.04);}
+  .order-loc .pin{font-size:26px;}
+  .order-loc b{font-family:'Poppins',sans-serif;font-size:14px;}
+  .order-loc span{font-size:11.5px;opacity:.85;}
+  .order-body{padding:26px 32px;}
+  .order-body h3{font-family:'Poppins',sans-serif;font-size:17.5px;color:var(--brand-900);margin-bottom:16px;}
+  .order-fields{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end;}
+  @media(max-width:760px){.order-fields{grid-template-columns:1fr;}}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:6px;}
+  .field select{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid #E1EEF5;font-size:13.5px;color:var(--ink);background:#fff;font-family:'Inter',sans-serif;}
+  .field select:focus{outline:none;border-color:var(--brand-500);}
+  #orderBtn{white-space:nowrap;}
+
+  /* Quick actions — connected step flow */
+  .quick{margin-top:64px;position:relative;z-index:5;background:radial-gradient(65% 100% at 50% 0%, var(--brand-50), transparent 75%);padding-top:8px;padding-bottom:8px;}
+  .quick-eyebrow{text-align:center;color:var(--brand-600);font-weight:700;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;}
+  .quick-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  @media(max-width:860px){.quick-grid{grid-template-columns:repeat(2,1fr);}}
+  .quick-connector{position:absolute;left:8%;right:8%;top:46px;height:0;border-top:2px dashed var(--brand-400);opacity:.45;z-index:0;}
+  .quick-connector .node{position:absolute;top:0;width:9px;height:9px;border-radius:50%;background:var(--brand-400);transform:translate(-50%,-50%);box-shadow:0 0 0 5px var(--brand-50);}
+  @media(max-width:860px){.quick-connector{display:none;}}
+  .quick-card{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--brand-900),var(--brand-800));border-radius:18px;padding:24px;color:#fff;box-shadow:0 14px 30px rgba(6,42,74,.2);transition:transform .3s ease, box-shadow .3s ease;z-index:1;}
+  .quick-card::after{content:"";position:absolute;top:-45%;right:-25%;width:150px;height:150px;background:radial-gradient(circle, rgba(95,209,240,.4), transparent 70%);pointer-events:none;}
+  .quick-card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(6,42,74,.32);}
+  .quick-card .step{position:absolute;top:16px;right:18px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.32);letter-spacing:1px;z-index:1;}
+  .quick-card .ic{position:relative;z-index:1;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--brand-500),var(--brand-400));display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:19px;box-shadow:0 8px 18px rgba(26,166,217,.45);}
+  .quick-card h4{position:relative;z-index:1;font-family:'Poppins',sans-serif;font-size:15.5px;margin-bottom:4px;}
+  .quick-card p{position:relative;z-index:1;font-size:12.5px;color:#BEE3F1;}
+
+  section{padding:88px 0;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 52px;}
+  .eyebrow{color:var(--brand-600);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:block;}
+  .section-head h2{font-size:34px;color:var(--brand-900);font-weight:700;}
+  .section-head p{color:var(--gray-600);margin-top:12px;font-size:16px;}
+
+  /* Benefits */
+  .benefits{background:var(--brand-50);}
+  .benefits-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  @media(max-width:760px){.benefits-grid{grid-template-columns:1fr;}}
+  .benefit{display:flex;gap:16px;background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 26px rgba(6,42,74,.07);transition:transform .3s ease, box-shadow .3s ease;}
+  .benefit:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(6,42,74,.15);}
+  .benefit .ic{position:relative;z-index:1;flex:none;width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--brand-500),var(--brand-400));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;box-shadow:0 8px 18px rgba(26,166,217,.35);}
+  .benefit h4{font-family:'Poppins',sans-serif;font-size:16px;margin-bottom:6px;color:var(--brand-900);}
+  .benefit p{font-size:13.5px;color:var(--gray-600);}
+
+  /* Rating / social proof */
+  .proof{position:relative;overflow:hidden;background:linear-gradient(165deg,var(--brand-900),var(--brand-800));color:#fff;border-radius:28px;margin:0 24px;padding:56px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+  .proof::after{content:"";position:absolute;top:-35%;right:-8%;width:320px;height:320px;background:radial-gradient(circle, rgba(95,209,240,.32), transparent 70%);pointer-events:none;}
+  .proof-left, .proof-score{position:relative;z-index:1;}
+  .proof-left h3{font-family:'Poppins',sans-serif;font-size:26px;margin-bottom:10px;}
+  .proof-left p{color:#BFE6F5;max-width:420px;}
+  .proof-score{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.1);padding:22px 30px;border-radius:18px;}
+  .proof-score .num{font-family:'Poppins',sans-serif;font-size:44px;font-weight:800;}
+  .proof-score .stars{color:var(--star);font-size:18px;letter-spacing:2px;}
+  .proof-score small{color:#BFE6F5;font-size:12.5px;}
+
+  /* Payment */
+  .pay-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:860px){.pay-grid{grid-template-columns:1fr;}}
+  .pay-card{border-radius:18px;padding:30px;background:#fff;border:1px solid #E7F2F7;text-align:center;transition:transform .3s ease, box-shadow .3s ease;}
+  .pay-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(6,42,74,.12);}
+  .pay-card .ic{position:relative;z-index:1;width:50px;height:50px;margin:0 auto 16px;border-radius:14px;background:linear-gradient(135deg,var(--brand-500),var(--brand-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 18px rgba(26,166,217,.35);}
+  .pay-card h4{font-family:'Poppins',sans-serif;margin-bottom:8px;}
+  .pay-card p{font-size:13.5px;color:var(--gray-600);}
+
+  /* About */
+  .about{display:grid;grid-template-columns:0.9fr 1.1fr;gap:56px;align-items:center;}
+  @media(max-width:900px){.about{grid-template-columns:1fr;}}
+  .about-media{position:relative;}
+  .about-media img{border-radius:22px;box-shadow:var(--shadow);height:440px;width:100%;object-fit:cover;}
+  .about-badge{position:absolute;bottom:20px;left:20px;background:#fff;border-radius:14px;padding:14px 18px;box-shadow:0 14px 30px rgba(6,42,74,.22);display:flex;align-items:center;gap:12px;}
+  .about-badge .stars{color:var(--star);font-size:15px;letter-spacing:1px;}
+  .about-badge b{font-family:'Poppins',sans-serif;font-size:17px;color:var(--brand-900);display:block;}
+  .about-badge small{color:var(--gray-600);font-size:11.5px;}
+  .about-list{margin-top:22px;display:flex;flex-direction:column;gap:14px;}
+  .about-list li{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--gray-600);}
+  .about-list b{color:var(--ink);}
+  .check{flex:none;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--brand-500),var(--brand-400));color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;margin-top:2px;box-shadow:0 6px 14px rgba(26,166,217,.35);}
+
+  /* Contact */
+  .contact{background:var(--brand-50);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:stretch;}
+  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:#fff;border-radius:20px;padding:36px;box-shadow:var(--shadow);}
+  .contact-item{display:flex;gap:14px;margin-bottom:22px;}
+  .contact-item .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--brand-100);color:var(--brand-700);display:flex;align-items:center;justify-content:center;}
+  .contact-item h5{font-size:14px;color:var(--gray-600);margin-bottom:2px;}
+  .contact-item p{font-weight:600;font-size:15px;}
+  .map-wrap{border-radius:20px;overflow:hidden;box-shadow:var(--shadow);min-height:340px;}
+  .map-wrap iframe{width:100%;height:100%;min-height:340px;border:0;}
+
+  /* CTA banner */
+  .cta-banner{background:linear-gradient(120deg,var(--brand-600),var(--brand-800));color:#fff;text-align:center;border-radius:28px;margin:0 24px;padding:64px 24px;}
+  .cta-banner h2{font-family:'Poppins',sans-serif;font-size:32px;margin-bottom:14px;}
+  .cta-banner p{color:#DAF3FB;max-width:520px;margin:0 auto 28px;}
+
+  footer{background:var(--brand-900);color:#BFE6F5;padding:56px 0 24px;margin-top:88px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;}
+  @media(max-width:760px){.footer-grid{grid-template-columns:1fr;}}
+  footer h5{color:#fff;font-family:'Poppins',sans-serif;font-size:15px;margin-bottom:16px;}
+  footer li{margin-bottom:10px;font-size:14px;}
+  footer .foot-logo{display:flex;align-items:center;gap:8px;color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:19px;margin-bottom:12px;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;font-size:12.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:#8FBCD0;}
+
+  .whatsapp-float{position:fixed;bottom:24px;right:24px;background:#25D366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.25);z-index:60;font-size:28px;transition:transform .4s ease;}
+  .whatsapp-float:hover{transform:scale(1.1) rotate(6deg);}
+  .whatsapp-float .ping{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#FF4D4D;border-radius:50%;border:2px solid #fff;animation:pulseDot 2s ease-in-out infinite;}
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.55;transform:scale(1.2);}}
+
+  /* Scroll reveal (progressive enhancement) */
+  .reveal, .reveal-stagger > *{opacity:1;transform:none;}
+  .js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);}
+  .js .reveal.is-visible{opacity:1;transform:translateY(0);}
+  .js .reveal-stagger > *{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94), transform .7s cubic-bezier(.25,.46,.45,.94);}
+  .js .reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+  .js .reveal-stagger.is-visible > *:nth-child(1){transition-delay:.04s;}
+  .js .reveal-stagger.is-visible > *:nth-child(2){transition-delay:.09s;}
+  .js .reveal-stagger.is-visible > *:nth-child(3){transition-delay:.14s;}
+  .js .reveal-stagger.is-visible > *:nth-child(4){transition-delay:.19s;}
+  .js .reveal-stagger.is-visible > *:nth-child(5){transition-delay:.24s;}
+  .js .reveal-stagger.is-visible > *:nth-child(6){transition-delay:.29s;}
+  .js .reveal-stagger.is-visible > *:nth-child(7){transition-delay:.34s;}
+  .js .reveal-stagger.is-visible > *:nth-child(8){transition-delay:.39s;}
+  .js .reveal-stagger.is-visible > *:nth-child(9){transition-delay:.44s;}
+  .js .reveal-stagger.is-visible > *:nth-child(10){transition-delay:.49s;}
+  .js .reveal-stagger.is-visible > *:nth-child(11){transition-delay:.54s;}
+  .js .reveal-stagger.is-visible > *:nth-child(12){transition-delay:.59s;}
+
+  /* Border-run */
+  @property --angle{syntax:'<angle>';inherits:false;initial-value:0deg;}
+  .border-run{position:relative;isolation:isolate;}
+  .border-run::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;
+    background:conic-gradient(from var(--angle), transparent 0deg, var(--brand-500) 60deg, var(--brand-400) 140deg, transparent 200deg, transparent 360deg);
+    -webkit-mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation:borderRun 6s linear infinite;opacity:0;transition:opacity .3s;pointer-events:none;z-index:2;}
+  .border-run:hover::before{opacity:1;animation-duration:2.2s;}
+  @keyframes borderRun{100%{--angle:360deg;}}
+
+  /* Gallery: two rows, opposite directions, pause on hover */
+  .gallery-rows{display:flex;flex-direction:column;gap:22px;padding:12px 0 8px;}
+  .gallery-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);}
+  .gallery-track{display:flex;width:max-content;gap:22px;animation:galleryLeft 50s linear infinite;}
+  .gallery-track.reverse{animation-name:galleryRight;animation-duration:44s;}
+  .gallery-wrap:hover .gallery-track{animation-play-state:paused;}
+  @keyframes galleryLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes galleryRight{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  .gallery-card{position:relative;width:280px;height:320px;flex-shrink:0;border-radius:22px;overflow:hidden;display:block;box-shadow:0 8px 20px rgba(6,42,74,.12);transition:transform .5s ease, box-shadow .5s ease;}
+  .gallery-card:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(6,42,74,.24);}
+  .gallery-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s ease;}
+  .gallery-card:hover img{transform:scale(1.1);}
+  .gallery-card .overlay{position:absolute;inset:0;background:linear-gradient(0deg, var(--brand-900) 0%, rgba(6,42,74,.6) 42%, rgba(6,42,74,.05) 75%);}
+  .gallery-card .content{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;color:#fff;}
+  .gallery-card .gic{width:42px;height:42px;border-radius:12px;background:var(--brand-500);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:12px;}
+  .gallery-card h4{font-family:'Poppins',sans-serif;font-size:16.5px;margin-bottom:4px;}
+  .gallery-card p{font-size:12.5px;color:#DCF3FA;}
+  @media(max-width:600px){.gallery-card{width:230px;height:280px;}}
+
+  @media (prefers-reduced-motion: reduce){
+    .gallery-track{animation:none;}
+    .border-run::before{animation:none;}
+    .js .reveal, .js .reveal-stagger > *{transition:none;opacity:1;transform:none;}
+    .whatsapp-float .ping{animation:none;}
+    .bubble{animation:none;display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="utility-bar">
+  <div class="container">
+    <div class="utility-links">
+      <span>R. José de Melo, 63 — Rio Branco, AC</span>
+      <span>(68) 99903-4467</span>
+    </div>
+    <div class="utility-links">
+      <a href="https://www.google.com/maps/place/Distribuidora+Morgado/data=!4m7!3m6!1s0x917f8d98b6f22d91:0x4dff8a1e1b7d467b!8m2!3d-9.9701717!4d-67.813617!16s%2Fg%2F11nc03kyzr!19sChIJkS3ytpiNf5ERe0Z9Gx6K_00?hl=pt-BR" target="_blank">★ 5.0 · Ver avaliações no Google</a>
+    </div>
+  </div>
+</div>
+
+<header id="siteHeader">
+  <div class="nav">
+    <div class="logo"><span class="dot"></span>Distribuidora<span class="light"> Morgado</span></div>
+    <nav class="nav-links">
+      <a href="#produtos">Produtos</a>
+      <a href="#porque">Por que a Morgado</a>
+      <a href="#pagamento">Pagamento</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-search" href="#pedido" title="Fazer pedido">🔍</a>
+      <a class="btn btn-on-brand" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank">Fazer Pedido</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero-typo">
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="bubbles" id="bubbles"></div>
+  <div class="hero-typo-inner">
+    <span class="hero-badge reveal"><span class="blip"></span> Entrega em Rio Branco</span>
+    <h1 class="reveal">Sua bebida.<br><span class="gradword">Sempre gelada.</span></h1>
+    <p class="lead reveal">Cerveja, refrigerante, água, isotônicos e muito mais — direto na sua casa ou no seu evento, com entrega rápida em Rio Branco.</p>
+    <div class="hero-cta-row reveal">
+      <a class="btn btn-primary" style="background:var(--brand-400);color:var(--brand-900);font-weight:700;" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank">Fazer Pedido no WhatsApp →</a>
+      <a class="btn btn-ghost-light" href="#produtos">Ver Produtos</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div><b>★ 5.0</b> no Google</div>
+      <div class="divider"></div>
+      <div><b>22</b> avaliações</div>
+      <div class="divider"></div>
+      <div>Funcionamento <b>estendido</b>, até 01h</div>
+    </div>
+  </div>
+</section>
+
+<div class="order-wrap">
+  <div class="order-card reveal" id="pedido">
+    <a class="order-loc" href="https://www.google.com/maps?q=-9.9701717,-67.813617" target="_blank">
+      <div class="pin">📍</div>
+      <b>Como chegar</b>
+      <span>R. José de Melo, 63 — Rio Branco, AC</span>
+    </a>
+    <div class="order-body">
+      <h3>Faça seu pedido agora e receba geladinho</h3>
+      <div class="order-fields">
+        <div class="field">
+          <label for="fieldProduct">O que você precisa?</label>
+          <select id="fieldProduct">
+            <option value="">Variado / não sei ainda</option>
+            <option>Cerveja</option>
+            <option>Refrigerante</option>
+            <option>Água Mineral</option>
+            <option>Isotônicos e Energéticos</option>
+            <option>Vinhos e Destilados</option>
+            <option>Gelo</option>
+            <option>Combo para festa</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fieldWhen">Para quando?</label>
+          <select id="fieldWhen">
+            <option value="">Assim que possível</option>
+            <option>Agora — entrega expressa</option>
+            <option>Hoje mais tarde</option>
+            <option>Encomenda para evento</option>
+          </select>
+        </div>
+        <button type="button" id="orderBtn" class="btn btn-primary">Fazer Pedido →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container quick">
+  <div class="quick-eyebrow reveal">Do pedido à sua geladeira</div>
+  <div class="quick-grid reveal-stagger">
+    <div class="quick-connector">
+      <span class="node" style="left:12.5%"></span>
+      <span class="node" style="left:37.5%"></span>
+      <span class="node" style="left:62.5%"></span>
+      <span class="node" style="left:87.5%"></span>
+    </div>
+    <a class="quick-card border-run" href="https://wa.me/5568999034467" target="_blank">
+      <span class="step">01</span>
+      <div class="ic">💬</div>
+      <h4>Pedir no WhatsApp</h4>
+      <p>Resposta rápida, sem enrolação</p>
+    </a>
+    <a class="quick-card border-run" href="#produtos">
+      <span class="step">02</span>
+      <div class="ic">🍺</div>
+      <h4>Escolher as Bebidas</h4>
+      <p>Cerveja, água, refri e mais</p>
+    </a>
+    <a class="quick-card border-run" href="#pedido">
+      <span class="step">03</span>
+      <div class="ic">🛵</div>
+      <h4>Combinar a Entrega</h4>
+      <p>Endereço e horário certos</p>
+    </a>
+    <a class="quick-card border-run" href="#contato">
+      <span class="step">04</span>
+      <div class="ic">🧊</div>
+      <h4>Receber Geladinho</h4>
+      <p>Direto na sua casa ou evento</p>
+    </a>
+  </div>
+</div>
+
+<section id="produtos" style="padding-bottom:56px;">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Produtos</span>
+      <h2>Tudo que sua casa ou seu evento precisam</h2>
+      <p>Variedade de marcas, estoque sempre completo e a bebida chegando geladinha até você.</p>
+    </div>
+  </div>
+  <div class="gallery-rows">
+    <div class="gallery-wrap">
+      <div class="gallery-track">
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Cerveja."><img src="https://images.unsplash.com/photo-1465849750859-837af5a9f709?q=75&w=700&auto=format&fit=crop" alt="Cerveja Gelada"><div class="overlay"></div><div class="content"><div class="gic">🍺</div><h4>Cerveja Gelada</h4><p>As principais marcas, sempre no gelo</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Refrigerante."><img src="https://images.unsplash.com/photo-1527960471264-932f39eb5846?q=75&w=700&auto=format&fit=crop" alt="Refrigerantes"><div class="overlay"></div><div class="content"><div class="gic">🥤</div><h4>Refrigerantes</h4><p>Latas e garrafas de todos os tamanhos</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20%C3%81gua%20Mineral."><img src="https://images.unsplash.com/photo-1558169550-45825435a09b?q=75&w=700&auto=format&fit=crop" alt="Água Mineral"><div class="overlay"></div><div class="content"><div class="gic">💧</div><h4>Água Mineral</h4><p>Com e sem gás, fardo ou unidade</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Isot%C3%B4nicos%20e%20Energ%C3%A9ticos."><img src="https://images.unsplash.com/photo-1757800735152-e001a3a29403?q=75&w=700&auto=format&fit=crop" alt="Isotônicos e Energéticos"><div class="overlay"></div><div class="content"><div class="gic">⚡</div><h4>Isotônicos & Energéticos</h4><p>Pra treino, festa ou o dia corrido</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Gelo."><img src="https://images.unsplash.com/photo-1627903629592-128a8aee977b?q=75&w=700&auto=format&fit=crop" alt="Gelo em Cubos"><div class="overlay"></div><div class="content"><div class="gic">🧊</div><h4>Gelo em Cubos</h4><p>Pra manter tudo geladinho até o fim</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Vinhos%20e%20Destilados."><img src="https://images.unsplash.com/photo-1743882430016-313c2a55f13a?q=75&w=700&auto=format&fit=crop" alt="Vinhos e Destilados"><div class="overlay"></div><div class="content"><div class="gic">🥃</div><h4>Vinhos & Destilados</h4><p>Pra ocasiões especiais</p></div></a>
+        <!-- duplicado p/ loop contínuo -->
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Cerveja."><img src="https://images.unsplash.com/photo-1465849750859-837af5a9f709?q=75&w=700&auto=format&fit=crop" alt="Cerveja Gelada"><div class="overlay"></div><div class="content"><div class="gic">🍺</div><h4>Cerveja Gelada</h4><p>As principais marcas, sempre no gelo</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Refrigerante."><img src="https://images.unsplash.com/photo-1527960471264-932f39eb5846?q=75&w=700&auto=format&fit=crop" alt="Refrigerantes"><div class="overlay"></div><div class="content"><div class="gic">🥤</div><h4>Refrigerantes</h4><p>Latas e garrafas de todos os tamanhos</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20%C3%81gua%20Mineral."><img src="https://images.unsplash.com/photo-1558169550-45825435a09b?q=75&w=700&auto=format&fit=crop" alt="Água Mineral"><div class="overlay"></div><div class="content"><div class="gic">💧</div><h4>Água Mineral</h4><p>Com e sem gás, fardo ou unidade</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Isot%C3%B4nicos%20e%20Energ%C3%A9ticos."><img src="https://images.unsplash.com/photo-1757800735152-e001a3a29403?q=75&w=700&auto=format&fit=crop" alt="Isotônicos e Energéticos"><div class="overlay"></div><div class="content"><div class="gic">⚡</div><h4>Isotônicos & Energéticos</h4><p>Pra treino, festa ou o dia corrido</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Gelo."><img src="https://images.unsplash.com/photo-1627903629592-128a8aee977b?q=75&w=700&auto=format&fit=crop" alt="Gelo em Cubos"><div class="overlay"></div><div class="content"><div class="gic">🧊</div><h4>Gelo em Cubos</h4><p>Pra manter tudo geladinho até o fim</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Vinhos%20e%20Destilados."><img src="https://images.unsplash.com/photo-1743882430016-313c2a55f13a?q=75&w=700&auto=format&fit=crop" alt="Vinhos e Destilados"><div class="overlay"></div><div class="content"><div class="gic">🥃</div><h4>Vinhos & Destilados</h4><p>Pra ocasiões especiais</p></div></a>
+      </div>
+    </div>
+    <div class="gallery-wrap">
+      <div class="gallery-track reverse">
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Sucos."><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=75&w=700&auto=format&fit=crop" alt="Sucos e Não-Alcoólicos"><div class="overlay"></div><div class="content"><div class="gic">🧃</div><h4>Sucos & Não-Alcoólicos</h4><p>Pra toda a família</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20%C3%81gua%20de%20Coco."><img src="https://images.unsplash.com/photo-1620752420341-4cd7642568dd?q=75&w=700&auto=format&fit=crop" alt="Água de Coco"><div class="overlay"></div><div class="content"><div class="gic">🥥</div><h4>Água de Coco</h4><p>Gelada, do jeito que Rio Branco gosta</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Combo%20para%20festa."><img src="https://images.unsplash.com/photo-1550720295-a59523cb8872?q=75&w=700&auto=format&fit=crop" alt="Combos para Festa"><div class="overlay"></div><div class="content"><div class="gic">🎉</div><h4>Combos para Festa</h4><p>Kit fechado pra não faltar nada</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Preciso%20de%20uma%20entrega%20expressa."><img src="https://images.unsplash.com/photo-1766170507518-e7a6ca397e1c?q=75&w=700&auto=format&fit=crop" alt="Entrega Expressa"><div class="overlay"></div><div class="content"><div class="gic">🛵</div><h4>Entrega Expressa</h4><p>Rápido, direto na sua porta</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20ver%20as%20marcas%20dispon%C3%ADveis."><img src="https://images.unsplash.com/photo-1744240527287-c8a36653d58b?q=75&w=700&auto=format&fit=crop" alt="Diversas Marcas"><div class="overlay"></div><div class="content"><div class="gic">🛒</div><h4>Diversas Marcas</h4><p>Estoque completo, sempre disponível</p></div></a>
+        <!-- duplicado p/ loop contínuo -->
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Sucos."><img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?q=75&w=700&auto=format&fit=crop" alt="Sucos e Não-Alcoólicos"><div class="overlay"></div><div class="content"><div class="gic">🧃</div><h4>Sucos & Não-Alcoólicos</h4><p>Pra toda a família</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20%C3%81gua%20de%20Coco."><img src="https://images.unsplash.com/photo-1620752420341-4cd7642568dd?q=75&w=700&auto=format&fit=crop" alt="Água de Coco"><div class="overlay"></div><div class="content"><div class="gic">🥥</div><h4>Água de Coco</h4><p>Gelada, do jeito que Rio Branco gosta</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20fazer%20um%20pedido%20de%20Combo%20para%20festa."><img src="https://images.unsplash.com/photo-1550720295-a59523cb8872?q=75&w=700&auto=format&fit=crop" alt="Combos para Festa"><div class="overlay"></div><div class="content"><div class="gic">🎉</div><h4>Combos para Festa</h4><p>Kit fechado pra não faltar nada</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Preciso%20de%20uma%20entrega%20expressa."><img src="https://images.unsplash.com/photo-1766170507518-e7a6ca397e1c?q=75&w=700&auto=format&fit=crop" alt="Entrega Expressa"><div class="overlay"></div><div class="content"><div class="gic">🛵</div><h4>Entrega Expressa</h4><p>Rápido, direto na sua porta</p></div></a>
+        <a class="gallery-card" target="_blank" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Quero%20ver%20as%20marcas%20dispon%C3%ADveis."><img src="https://images.unsplash.com/photo-1744240527287-c8a36653d58b?q=75&w=700&auto=format&fit=crop" alt="Diversas Marcas"><div class="overlay"></div><div class="content"><div class="gic">🛒</div><h4>Diversas Marcas</h4><p>Estoque completo, sempre disponível</p></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits" id="porque">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por que a Morgado</span>
+      <h2>Nota máxima de quem já pediu</h2>
+      <p>5.0 no Google não é sorte — é entrega rápida, estoque completo e atendimento de quem trata cliente bem.</p>
+    </div>
+    <div class="benefits-grid reveal-stagger">
+      <div class="benefit border-run"><div class="ic">①</div><div><h4>Nota 5.0 no Google</h4><p>Avaliação máxima direto de quem já comprou aqui.</p></div></div>
+      <div class="benefit border-run"><div class="ic">②</div><div><h4>Entrega rápida</h4><p>Pedido feito, bebida a caminho — sem enrolação.</p></div></div>
+      <div class="benefit border-run"><div class="ic">③</div><div><h4>Estoque sempre completo</h4><p>Cerveja, água, refri e gelo, sem faltar na hora que você precisa.</p></div></div>
+      <div class="benefit border-run"><div class="ic">④</div><div><h4>Preço justo</h4><p>Condições boas pra consumo do dia a dia ou festa grande.</p></div></div>
+      <div class="benefit border-run"><div class="ic">⑤</div><div><h4>Funcionamento estendido</h4><p>Atendimento até tarde da noite, pra quando a bebida faltar de última hora.</p></div></div>
+      <div class="benefit border-run"><div class="ic">⑥</div><div><h4>Variedade de marcas</h4><p>Várias opções em cada categoria, do popular ao premium.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="proof reveal">
+    <div class="proof-left">
+      <h3>Avaliação real, direto do Google</h3>
+      <p>A nota que os próprios clientes deram pra Distribuidora Morgado.</p>
+    </div>
+    <div class="proof-score">
+      <div>
+        <div class="num">5.0</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div>
+        <b style="font-family:'Poppins',sans-serif;font-size:18px;">22 avaliações</b>
+        <small>Google Maps · Rio Branco</small><br>
+        <a href="https://www.google.com/maps/place/Distribuidora+Morgado/data=!4m7!3m6!1s0x917f8d98b6f22d91:0x4dff8a1e1b7d467b!8m2!3d-9.9701717!4d-67.813617!16s%2Fg%2F11nc03kyzr!19sChIJkS3ytpiNf5ERe0Z9Gx6K_00?hl=pt-BR" target="_blank" style="color:#fff;text-decoration:underline;font-size:13px;">Ver avaliações no Google →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pagamento">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Pagamento</span>
+      <h2>Formas de pagamento fáceis, na hora da entrega</h2>
+      <p>Sem burocracia — você escolhe como pagar quando a bebida chegar.</p>
+    </div>
+    <div class="pay-grid reveal-stagger">
+      <div class="pay-card border-run"><div class="ic">📲</div><h4>Pix</h4><p>Pagamento na hora, direto pelo celular.</p></div>
+      <div class="pay-card border-run"><div class="ic">💳</div><h4>Cartão na entrega</h4><p>Débito ou crédito, maquininha na porta.</p></div>
+      <div class="pay-card border-run"><div class="ic">💵</div><h4>Dinheiro</h4><p>Pagamento em espécie, do jeito de sempre.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container about reveal-stagger">
+    <div class="about-media">
+      <img src="https://images.unsplash.com/photo-1767519865218-f82660940ff9?q=80&w=1000&auto=format&fit=crop" alt="Estoque da Distribuidora Morgado">
+      <div class="about-badge">
+        <div class="stars">★★★★★</div>
+        <div>
+          <b>5.0 no Google</b>
+          <small>22 avaliações · Rio Branco</small>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Sobre a Morgado</span>
+      <h2 style="font-size:30px;color:var(--brand-900);font-weight:700;">A distribuidora de bebidas mais bem avaliada de Rio Branco</h2>
+      <p style="color:var(--gray-600);margin-top:14px;">A Distribuidora Morgado atende Rio Branco com estoque completo de cerveja, refrigerante, água, isotônicos e muito mais — sempre gelado e pronto pra sair na entrega. Nota máxima no Google não é discurso: é o resultado de anos entregando rápido e tratando cada pedido com atenção.</p>
+      <ul class="about-list">
+        <li><span class="check">✓</span><span><b>Estoque completo</b> das principais categorias de bebidas, todo dia.</span></li>
+        <li><span class="check">✓</span><span><b>Entrega rápida</b> em Rio Branco, do pedido à porta de casa.</span></li>
+        <li><span class="check">✓</span><span><b>Atendimento de confiança</b>, com a nota máxima de quem já comprou.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Contato</span>
+      <h2>Bora garantir a bebida geladinha?</h2>
+    </div>
+    <div class="contact-grid reveal-stagger">
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="ic">📍</div>
+          <div><h5>Endereço</h5><p>R. José de Melo, 63 — Rio Branco, AC</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">📞</div>
+          <div><h5>Telefone / WhatsApp</h5><p>(68) 99903-4467</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">⭐</div>
+          <div><h5>Avaliação Google</h5><p>5.0 de 5 (22 avaliações)</p></div>
+        </div>
+        <a class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px;" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank">Falar no WhatsApp</a>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=-9.9701717,-67.813617&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-banner reveal">
+    <h2>Vamos garantir sua bebida gelada?</h2>
+    <p>Faça seu pedido agora pelo WhatsApp e receba rapidinho, direto em Rio Branco.</p>
+    <a class="btn btn-ghost-light" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank">🧊 Fazer Pedido Agora</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="foot-logo"><span class="dot" style="width:10px;height:10px;background:var(--brand-500);border-radius:3px;display:inline-block;"></span>Distribuidora Morgado</div>
+      <p style="max-width:320px;font-size:13.5px;">A distribuidora de bebidas mais bem avaliada de Rio Branco. Cerveja, refrigerante, água e muito mais, sempre gelado.</p>
+    </div>
+    <div>
+      <h5>Navegação</h5>
+      <ul>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#porque">Por que a Morgado</a></li>
+        <li><a href="#pagamento">Pagamento</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Contato</h5>
+      <ul>
+        <li>R. José de Melo, 63 — Rio Branco, AC</li>
+        <li>(68) 99903-4467</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container foot-bottom">
+    <span>© 2026 Distribuidora Morgado. Todos os direitos reservados.</span>
+    <span>Rio Branco · Acre</span>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/5568999034467?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20pedido." target="_blank">📱<span class="ping"></span></a>
+
+<script>
+(function(){
+  var orderBtn = document.getElementById('orderBtn');
+  if (orderBtn) {
+    orderBtn.addEventListener('click', function(){
+      var product = document.getElementById('fieldProduct').value;
+      var when = document.getElementById('fieldWhen').value;
+      var msg = 'Olá! Gostaria de fazer um pedido';
+      if (product) msg += ' de ' + product;
+      if (when) msg += ', ' + when.toLowerCase();
+      msg += '.';
+      window.open('https://wa.me/5568999034467?text=' + encodeURIComponent(msg), '_blank');
+    });
+  }
+
+  var header = document.getElementById('siteHeader');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 12); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Bolhas decorativas do hero (respeitam prefers-reduced-motion via CSS acima)
+  var bubblesWrap = document.getElementById('bubbles');
+  if (bubblesWrap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    for (var i = 0; i < 8; i++) {
+      var b = document.createElement('span');
+      b.className = 'bubble';
+      var size = 6 + Math.random() * 14;
+      b.style.width = size + 'px';
+      b.style.height = size + 'px';
+      b.style.left = (Math.random() * 100) + '%';
+      b.style.animationDuration = (7 + Math.random() * 6) + 's';
+      b.style.animationDelay = (Math.random() * 8) + 's';
+      bubblesWrap.appendChild(b);
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
