@@ -170,8 +170,16 @@ h2{font-size:clamp(30px,5.4vw,50px);margin-bottom:16px;}
 }
 
 /* ---------- módulos ---------- */
-.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:22px;margin-top:46px;}
+.mods-wrap{
+  margin-top:46px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.mods{display:flex;width:max-content;gap:22px;animation:modsLeft 52s linear infinite;}
+.mods-wrap:hover .mods{animation-play-state:paused;}
+@keyframes modsLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 .mod{
+  flex:0 0 296px;
   background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;
   transition:transform .22s ease,border-color .22s ease;
 }
@@ -357,6 +365,8 @@ summary{padding:22px 46px;}
   *{animation:none!important;transition:none!important;}
   html{scroll-behavior:auto;}
   .js .reveal{opacity:1;transform:none;}
+  .mods{animation:none;}
+  .mods-wrap{overflow-x:auto;}
 }
 </style>
 <script>document.documentElement.classList.add('js');</script>
@@ -498,7 +508,8 @@ summary{padding:22px 46px;}
     <p class="lead reveal">Direto ao ponto, sem aula de teoria. Todo módulo termina com uma coisa
       pronta na sua mão.</p>
 
-    <div class="mods">
+    <div class="mods-wrap">
+      <div class="mods">
       <article class="mod reveal">
         <img src="assets/mod-01.jpg" alt="Módulo 01: A Estratégia" loading="lazy">
         <div class="body"><h3>A Estratégia</h3>
@@ -535,6 +546,43 @@ summary{padding:22px 46px;}
           <p>Encontrar, abordar e fechar. O formato de mensagem que faz o dono responder, e
             as respostas para as objeções que vêm depois.</p></div>
       </article>
+      <article class="mod reveal" aria-hidden="true">
+        <img src="assets/mod-01.jpg" alt="Módulo 01: A Estratégia" loading="lazy">
+        <div class="body"><h3>A Estratégia</h3>
+          <p>Por que a entrega invertida funciona, as regras que te protegem e quanto cobrar
+            antes de mandar a primeira mensagem.</p></div>
+      </article>
+      <article class="mod reveal" aria-hidden="true">
+        <img src="assets/mod-02.jpg" alt="Módulo 02: Montando a Máquina" loading="lazy">
+        <div class="body"><h3>Montando a Máquina</h3>
+          <p>A instalação completa, do zero absoluto, com tela de Mac e de Windows. Ao fim
+            deste módulo a máquina está ligada.</p></div>
+      </article>
+      <article class="mod reveal" aria-hidden="true">
+        <img src="assets/mod-03.jpg" alt="Módulo 03: Um Site na Prática" loading="lazy">
+        <div class="body"><h3>Um Site na Prática</h3>
+          <p>Gravação contínua: um negócio real escolhido no mapa, o site montado do começo
+            ao fim e publicado, sem corte.</p></div>
+      </article>
+      <article class="mod reveal" aria-hidden="true">
+        <img src="assets/mod-nichos.jpg" alt="Módulo Nichos que Pagam Bem" loading="lazy">
+        <div class="body"><h3>Nichos que Pagam Bem</h3>
+          <p>Quais negócios pagam, quais só dão trabalho, e como escolher um nicho da sua
+            cidade para dominar em vez de atirar para todo lado.</p></div>
+      </article>
+      <article class="mod reveal" aria-hidden="true">
+        <img src="assets/mod-hospedagem.jpg" alt="Módulo Hospedagem e Domínios" loading="lazy">
+        <div class="body"><h3>Hospedagem e Domínios</h3>
+          <p>Como publicar de graça, para sempre, e como apontar o domínio próprio do cliente
+            no dia em que ele pagar.</p></div>
+      </article>
+      <article class="mod reveal" aria-hidden="true">
+        <img src="assets/mod-prospeccao.jpg" alt="Módulo Prospecção que Gera Resultado" loading="lazy">
+        <div class="body"><h3>Prospecção que Gera Resultado</h3>
+          <p>Encontrar, abordar e fechar. O formato de mensagem que faz o dono responder, e
+            as respostas para as objeções que vêm depois.</p></div>
+      </article>
+      </div>
     </div>
   </div>
 </section>
@@ -600,7 +648,6 @@ summary{padding:22px 46px;}
         <ul>
           <li><span class="s">✕</span> Quer aprender a programar de verdade</li>
           <li><span class="s">✕</span> Quer construir um sistema com login e banco de dados</li>
-          <li><span class="s">✕</span> Não quer falar com ninguém, porque o método exige mandar mensagem</li>
           <li><span class="s">✕</span> Está procurando ganhar dinheiro sem trabalhar</li>
         </ul>
       </div>
