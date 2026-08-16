@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Máquina de Sites — entregue o site pronto e cobre depois</title>
+<title>Máquina de Sites | Entregue o site pronto e cobre depois</title>
 <meta name="description" content="O método da Entrega Invertida: crie sites premium com IA em 40 minutos, entregue pronto para o dono do negócio e cobre só depois que ele ver funcionando.">
 <meta property="og:title" content="Máquina de Sites">
-<meta property="og:description" content="Pare de tentar vender sites. Entregue primeiro — e cobre depois que o dono ver funcionando.">
+<meta property="og:description" content="Pare de tentar vender sites. Entregue primeiro e cobre depois que o dono ver funcionando.">
 <meta property="og:image" content="assets/hero.jpg">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -292,6 +292,51 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
   transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94);}
 .js .reveal.vis{opacity:1;transform:none;}
 
+/* ============================================================
+   CENTRALIZAÇÃO
+   Tudo centralizado, com largura de leitura travada para o texto
+   corrido não virar linha longa demais.
+   ============================================================ */
+section .wrap,
+.hero-grid > div:first-child{text-align:center;}
+
+/* eyebrow com filete dos dois lados */
+.sec-tag{justify-content:center;}
+.sec-tag::before{content:"";flex:0 1 90px;height:1px;background:var(--line);}
+.sec-tag::after{flex:0 1 90px;}
+
+/* parágrafos longos: centralizados mas com medida controlada */
+.lead,.hero p.sub{margin-left:auto;margin-right:auto;}
+.belief p,.step p,.mod p,.quote,.fit-card li{margin-left:auto;margin-right:auto;max-width:46ch;}
+details p{margin-left:auto;margin-right:auto;max-width:62ch;}
+
+/* hero */
+.trust{justify-content:center;}
+.hero-cta{display:flex;flex-direction:column;align-items:center;}
+
+/* crenças: número acima do texto */
+.belief{grid-template-columns:1fr;justify-items:center;gap:16px;text-align:center;}
+.belief .mark{margin:0 auto;}
+
+/* passos e módulos */
+.step .n{text-align:center;}
+.mod .body{text-align:center;}
+
+/* stack: check acima do item */
+.stack-item{display:block;text-align:center;padding:22px 26px;}
+.stack-item .ck{margin:0 auto 10px;}
+
+/* para quem é: símbolo inline antes do texto */
+.fit-card ul{align-items:center;}
+.fit-card li{display:block;}
+.fit-card .s{margin-right:9px;}
+
+/* faq: pergunta centralizada, sinal continua na direita */
+summary{padding:22px 46px;}
+
+/* garantia: selo acima */
+.guarantee{grid-template-columns:1fr;justify-items:center;text-align:center;gap:16px;}
+
 @media (max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px;}
   .hero-art{order:-1;}
@@ -324,11 +369,11 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
     <div>
       <span class="eyebrow">Método da Entrega Invertida</span>
       <h1>Pare de tentar vender sites.<br><span class="hl">Entregue primeiro.</span></h1>
-      <p class="sub">O dono do negócio não abre proposta. Mas ele abre o <strong>site dele</strong> —
+      <p class="sub">O dono do negócio não abre proposta. Mas ele abre o <strong>site dele</strong>,
         com o nome dele, a nota do Google dele e o WhatsApp dele funcionando.
         É esse o método. E a IA monta em <strong>40 minutos</strong>.</p>
       <div class="hero-cta">
-        <a class="btn btn-lg" href="#oferta" data-cta>QUERO A MÁQUINA — R$ 97</a>
+        <a class="btn btn-lg" href="#oferta" data-cta>QUERO A MÁQUINA POR R$ 97</a>
         <span class="btn-sub">Acesso imediato · pagamento único · 7 dias de garantia</span>
       </div>
       <div class="trust">
@@ -338,7 +383,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
       </div>
     </div>
     <div class="hero-art">
-      <img src="assets/hero.jpg" alt="Máquina de Sites — sistema de criação de sites com IA" fetchpriority="high" width="1200" height="1200">
+      <img src="assets/hero.jpg" alt="Máquina de Sites, sistema de criação de sites com IA" fetchpriority="high" width="1200" height="1200">
     </div>
   </div>
 </header>
@@ -366,21 +411,21 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
   <div class="wrap">
     <div class="sec-tag"><span class="eyebrow">A virada</span></div>
     <h2 class="reveal">Ninguém compra "um site".<br>As pessoas compram <span class="hl">o site delas.</span></h2>
-    <p class="lead reveal">Quando o dono abre o link e vê o próprio negócio na tela — a fachada, o
-      endereço certo, as 4,8 estrelas que ele levou anos pra conquistar, o botão de WhatsApp
-      abrindo a conversa dele — a pergunta muda. Ela deixa de ser <em>"será que vale a pena?"</em>
+    <p class="lead reveal">Quando o dono abre o link e vê o próprio negócio na tela, com a
+      fachada, o endereço certo, as 4,8 estrelas que ele levou anos pra conquistar e o botão de
+      WhatsApp abrindo a conversa dele, a pergunta muda. Ela deixa de ser <em>"será que vale a pena?"</em>
       e vira <strong>"quanto custa pra colocar isso no ar hoje?"</strong></p>
     <p class="lead reveal" style="margin-top:22px">Isso sempre funcionou. O que impedia era a conta:
       fazer um site premium de graça, na esperança de vender, custava uma semana de trabalho.
-      Ninguém faz isso vinte vezes. <strong>Com a máquina montada, o mesmo site sai em 40 minutos</strong> —
-      e aí a conta vira.</p>
+      Ninguém faz isso vinte vezes. <strong>Com a máquina montada, o mesmo site sai em 40 minutos</strong>.
+      E aí a conta vira.</p>
 
     <div class="steps">
       <div class="step reveal">
         <span class="n">TEMPO 01</span>
         <h3>Pesquisa</h3>
         <p>Você acha, no Google Maps da sua cidade, os negócios com nota alta e sem site.
-          Eles existem às dezenas — e são os que têm caixa e orgulho da operação.</p>
+          Eles existem às dezenas, e são os que têm caixa e orgulho da operação.</p>
       </div>
       <div class="step reveal">
         <span class="n">TEMPO 02</span>
@@ -392,7 +437,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
         <span class="n">TEMPO 03</span>
         <h3>Cobrança</h3>
         <p>Você manda no WhatsApp dele. Ele abre, reconhece o próprio negócio e responde.
-          Só então se fala em preço — sobre algo que ele já viu pronto.</p>
+          Só então se fala em preço, sobre algo que ele já viu pronto.</p>
       </div>
     </div>
   </div>
@@ -409,7 +454,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
         <div class="mark">01</div>
         <div>
           <span class="said">"IA faz site genérico, todo mundo percebe"</span>
-          <h3>Faz — quando você só pede "um site bonito".</h3>
+          <h3>Faz sim, quando você só pede "um site bonito".</h3>
           <p>O que você recebe aqui não é um prompt. É um <strong>sistema de design</strong> com
             paleta calculada a partir da marca real do cliente, seis arquiteturas de página
             que se revezam e uma regra dura: <strong>nenhum site pode repetir a composição do
@@ -423,7 +468,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
           <span class="said">"Eu não sei programar nem desenhar"</span>
           <h3>Você não vai escrever uma linha de código.</h3>
           <p>Você instala a máquina uma vez, fala o nome da empresa, e ela executa sozinha o
-            passo a passo inteiro — pesquisa a identidade visual, escolhe a composição, busca as
+            passo a passo inteiro: pesquisa a identidade visual, escolhe a composição, busca as
             fotos, monta e testa. Seu trabalho é <strong>escolher o negócio certo e apertar
             enviar</strong>.</p>
         </div>
@@ -433,7 +478,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
         <div>
           <span class="said">"Na minha cidade não tem cliente pra isso"</span>
           <h3>Abre o Google Maps agora e conta.</h3>
-          <p>Digite o seu bairro e um nicho qualquer — clínica, distribuidora, imobiliária,
+          <p>Digite o seu bairro e um nicho qualquer: clínica, distribuidora, imobiliária,
             barbearia. Conte quantos têm <strong>nota acima de 4,5 e nenhum site</strong>. Em
             qualquer cidade do Brasil esse número passa de trinta. Cada um deles é uma pessoa
             que já provou que sabe tocar um negócio e ainda não tem onde ser encontrada.</p>
@@ -453,39 +498,39 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
 
     <div class="mods">
       <article class="mod reveal">
-        <img src="assets/mod-01.jpg" alt="Módulo 01 — A Estratégia" loading="lazy">
+        <img src="assets/mod-01.jpg" alt="Módulo 01: A Estratégia" loading="lazy">
         <div class="body"><h3>A Estratégia</h3>
           <p>Por que a entrega invertida funciona, as regras que te protegem e quanto cobrar
             antes de mandar a primeira mensagem.</p></div>
       </article>
       <article class="mod reveal">
-        <img src="assets/mod-02.jpg" alt="Módulo 02 — Montando a Máquina" loading="lazy">
+        <img src="assets/mod-02.jpg" alt="Módulo 02: Montando a Máquina" loading="lazy">
         <div class="body"><h3>Montando a Máquina</h3>
           <p>A instalação completa, do zero absoluto, com tela de Mac e de Windows. Ao fim
             deste módulo a máquina está ligada.</p></div>
       </article>
       <article class="mod reveal">
-        <img src="assets/mod-03.jpg" alt="Módulo 03 — Um Site na Prática" loading="lazy">
+        <img src="assets/mod-03.jpg" alt="Módulo 03: Um Site na Prática" loading="lazy">
         <div class="body"><h3>Um Site na Prática</h3>
           <p>Gravação contínua: um negócio real escolhido no mapa, o site montado do começo
             ao fim e publicado, sem corte.</p></div>
       </article>
       <article class="mod reveal">
-        <img src="assets/mod-nichos.jpg" alt="Módulo — Nichos que Pagam Bem" loading="lazy">
+        <img src="assets/mod-nichos.jpg" alt="Módulo Nichos que Pagam Bem" loading="lazy">
         <div class="body"><h3>Nichos que Pagam Bem</h3>
           <p>Quais negócios pagam, quais só dão trabalho, e como escolher um nicho da sua
             cidade para dominar em vez de atirar para todo lado.</p></div>
       </article>
       <article class="mod reveal">
-        <img src="assets/mod-hospedagem.jpg" alt="Módulo — Hospedagem e Domínios" loading="lazy">
+        <img src="assets/mod-hospedagem.jpg" alt="Módulo Hospedagem e Domínios" loading="lazy">
         <div class="body"><h3>Hospedagem e Domínios</h3>
           <p>Como publicar de graça, para sempre, e como apontar o domínio próprio do cliente
             no dia em que ele pagar.</p></div>
       </article>
       <article class="mod reveal">
-        <img src="assets/mod-prospeccao.jpg" alt="Módulo — Prospecção que Gera Resultado" loading="lazy">
+        <img src="assets/mod-prospeccao.jpg" alt="Módulo Prospecção que Gera Resultado" loading="lazy">
         <div class="body"><h3>Prospecção que Gera Resultado</h3>
-          <p>Encontrar, abordar e fechar. O formato de mensagem que faz o dono responder — e
+          <p>Encontrar, abordar e fechar. O formato de mensagem que faz o dono responder, e
             as respostas para as objeções que vêm depois.</p></div>
       </article>
     </div>
@@ -505,7 +550,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
       <div class="stack-item"><span class="ck">✓</span><div>
         <b>A máquina instalável</b>
         <span>O sistema que roda dentro da IA e executa o passo a passo sozinho. É o coração
-          do produto — não um PDF com dicas.</span></div></div>
+          do produto, não um PDF com dicas.</span></div></div>
       <div class="stack-item"><span class="ck">✓</span><div>
         <b>Prompt de instalação pronto</b>
         <span>Você copia, cola e a máquina se instala. Menos de um minuto.</span></div></div>
@@ -519,7 +564,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
           saírem com cara de template.</span></div></div>
       <div class="stack-item"><span class="ck">✓</span><div>
         <b>Guia de publicação gratuita</b>
-        <span>URL pública no ar em 30 segundos, sem pagar hospedagem — e o passo do domínio
+        <span>URL pública no ar em 30 segundos, sem pagar hospedagem, e o passo do domínio
           próprio quando o cliente fechar.</span></div></div>
       <div class="stack-item"><span class="ck">✓</span><div>
         <b>Atualizações por 12 meses</b>
@@ -553,7 +598,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
         <ul>
           <li><span class="s">✕</span> Quer aprender a programar de verdade</li>
           <li><span class="s">✕</span> Quer construir um sistema com login e banco de dados</li>
-          <li><span class="s">✕</span> Não quer falar com ninguém — o método exige mandar mensagem</li>
+          <li><span class="s">✕</span> Não quer falar com ninguém, porque o método exige mandar mensagem</li>
           <li><span class="s">✕</span> Está procurando ganhar dinheiro sem trabalhar</li>
         </ul>
       </div>
@@ -603,10 +648,10 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
           ainda está aprendendo. Do terceiro em diante, entre 20 e 40 minutos.</p></details>
       <details><summary>Funciona na minha cidade, que é pequena?</summary>
         <p>Cidade pequena costuma ser melhor: menos concorrência e mais negócio bom sem site.
-          Faça o teste antes de comprar — abra o Google Maps, procure um nicho e conte quantos
+          Faça o teste antes de comprar: abra o Google Maps, procure um nicho e conte quantos
           têm nota alta e nenhum site.</p></details>
       <details><summary>E se eu não fizer ideia de quanto cobrar?</summary>
-        <p>Tem uma aula só sobre isso, e ela vem no primeiro módulo de propósito — você precisa
+        <p>Tem uma aula só sobre isso, e ela vem no primeiro módulo de propósito, porque você precisa
           saber o número antes de mandar a primeira mensagem, não depois que o dono perguntar.</p></details>
       <details><summary>Serve para Windows?</summary>
         <p>Serve. A aula de instalação foi gravada duas vezes, uma em tela de Mac e outra em
@@ -614,7 +659,7 @@ footer p{font-family:var(--mono);font-size:12px;color:var(--ink-3);line-height:2
       <details><summary>É ético mandar um site que a empresa não pediu?</summary>
         <p>É o mesmo que um arquiteto mandar um estudo, ou um designer mandar uma proposta de
           logo. A regra que você aprende aqui, e que não se quebra: <strong>todo dado no site é
-          real e verificável</strong> — nada de avaliação inventada, número fantasiado ou foto
+          real e verificável</strong>. Nada de avaliação inventada, número fantasiado ou foto
           fabricada. É justamente isso que faz o dono responder em vez de desconfiar.</p></details>
       <details><summary>Como recebo o acesso?</summary>
         <p>Assim que o pagamento é aprovado, o e-mail com login e senha chega automaticamente.
